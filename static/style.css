@@ -1,7 +1,17 @@
 /* style.css */
+
+:root{
+    --main-color: #EEF6FF;
+    --side-bar: #252525;
+    --btn-back: #4663B3;
+    --logo: rgb(59,182,255)
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
@@ -10,8 +20,8 @@ body {
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #2c3e50;
+    width: 250px;
+    background-color: var(--side-bar);
     color: #ecf0f1;
     padding: 20px;
     box-sizing: border-box;
@@ -21,6 +31,8 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+    color: var(--logo);
+    display: flex;
 }
 
 .sidebar nav ul {
@@ -35,14 +47,15 @@ body {
 .sidebar nav ul li a {
     color: #ecf0f1;
     text-decoration: none;
-    padding: 10px 15px;
+    padding: 15px 15px;
     display: block;
-    border-radius: 5px;
+    font-size: 16px;
+    border-radius: 20px;
 }
 
 .sidebar nav ul li a.active,
 .sidebar nav ul li a:hover {
-    background-color: #34495e;
+    background: linear-gradient(to left , var(--btn-back) , var(--logo));
 }
 
 .main-content {
@@ -52,10 +65,11 @@ body {
 }
 
 .form-container {
-    background-color: #ecf0f1;
+    background: var(--main-color);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .form-group {
@@ -68,17 +82,118 @@ body {
 }
 
 .schedule-details {
-    background-color: #ecf0f1;
+    background-color: var(--main-color);
     padding: 20px;
     border-radius: 10px;
 }
-
+.lab-select{
+    display: none;
+}
+form{
+    position: relative;
+}
 .schedule-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+#id_semestr ,#id_year{
+    margin-left: 20px;
+    margin-top: -5px;
+}
+.together , .together1{
+    display: flex;
+    align-items: center;
+}
+.together1{
+    width: 600px;
+    justify-content: space-between;
+}
+.together1 > div{
+    display: flex;
+    width: 230px;
+    justify-content: space-between;
+}
+.together1 > div > input{
+    margin-top: -5px;
 
+}
+.together> .form-group:last-child{
+    display: flex;
+    margin-left: 50px;
+}
+#form_group1{
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+#form_group1 > input{
+    width: 90px;
+    margin-top: -5px;
+    margin-left: 20px;
+    background-color: transparent;
+}
+#form_group1 > span , #submit , #filterButton{
+    width: 100px;
+    padding: 10px 10px;
+    background-color: var(--btn-back);
+    border-radius: 15px;
+    color: white;
+    border: none;
+    outline: none;
+    position: absolute;
+    left: 40px;
+    top: 1;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+.group-laboratory{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#submit , #filterButton{
+    left: 90%;
+    bottom: -20px;
+}   
+#filterButton{
+    bottom: 10px;
+}
+
+#deadline{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+}
+#id_from_month , #id_to_month{
+    margin-left: 20px;
+    margin-top: -5px;
+} 
+#id_semestr , #id_year ,#id_from_month , #id_to_month , #lab-select , .together1 > div > input , #laboratory , #turnOnTime , #turnOffTime{
+    border: none;
+    padding: 5px 10px;
+    background-color: white;
+}
+#id_semestr:focus,
+#id_year:focus,
+#id_from_month:focus,
+#id_to_month:focus,
+#lab-select:focus,
+#laboratory:focus,
+.together1 > div > input:focus,
+#turnOnTime:focus ,
+#turnOffTime:focus
+{
+    outline: none;
+    border: none;
+}
+#turnOnTime ,
+#turnOffTime{
+    background-color: transparent;
+}
 .schedule-table th,
 .schedule-table td {
     border: 1px solid #bdc3c7;
@@ -95,3 +210,81 @@ body {
     background-color: #ecf0f1;
     color: #2c3e50;
 }
+
+.time-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+}
+
+.time-buttons > button{
+    padding: 10px 30px ;
+    border-radius: 20px;
+    font-size: 17px;
+    background-color: var(--btn-back);
+    color: white;
+    border: none;
+    outline: none;
+}
+.dashboard-details{
+    height: fit-content !important;
+}
+.dashboard-metrics{
+    display: flex;
+    width: 500px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.dashboard-metrics > div{
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background-color: #FBFFE0;
+    margin-left: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.dashboard-metrics > div > p{
+    width: 100px;
+}
+.chart{
+    width: fit-content !important;
+}
+#chart{
+    width: 600px !important;
+    height: 400px !important;
+}
+
+.controls{
+    width: 370px;
+    height: 530px;
+    background-color: #FBFFE0;
+    position: relative;
+    left: 650px;
+    top: -570px;
+    border-radius: 10px;
+    padding: 10px 30px;
+}
+
+.controls > h3{
+    font-size: 30px;
+}
+.controls >.control-item > label{
+    line-height: 40px;
+    font-size: 23px;
+}
+
+.heating-schedule{
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+.heating-schedule > div{
+    text-align: center;
+    line-height: 35px;
+}
+

@@ -1,82 +1,105 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Schedule Upload</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="container">
-        <div class="sidebar">
-            <div class="logo">BMS</div>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'index' %}" class="active">Schedule</a></li>
-                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                </ul>
-            </nav>
+      <div class="sidebar">
+        <div class="logo">
+          <img src="{% static '/image.png' %}" alt="" />
+          <p>BMS</p>
         </div>
-                <div class="main-content">
-                    <h1>Schedule</h1>
-                    <div class="form-container">
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="form-group">
-                                {{ form.file.label_tag }}
-                                <input type="file" name="file" accept=".xlsx">
-                            </div>
-                            <div class="form-group">
-                                {{ form.semestr.label_tag }}
-                                {{ form.semestr }}
-                            </div>
-                            <div class="form-group">
-                                {{ form.year.label_tag }}
-                                {{ form.year }}
-                            </div>
-                            <div class="form-group">
-                                {{ form.from_month.label_tag }}
-                                {{ form.from_month }}
-                                <span> - </span>
-                                {{ form.to_month.label_tag }}
-                                {{ form.to_month }}
-                            </div>
-                            <button type="submit">Upload</button>
-                        </form>
-                    </div>
-                    <div class="schedule-details">
-                        {% if schedule_data %}
-                            <h2>Schedule Details</h2>
-                            <p><strong>Semester:</strong> {{ semestr }}</p>
-                            <p><strong>Year:</strong> {{ year }}</p>
-                            <p><strong>Heating operating period:</strong> {{ from_month }} - {{ to_month }}</p>
-                            <label for="lab-select">Laboratory 1</label>
-                            <select id="lab-select">
-                                <option value="1">Laboratory 1</option>
-                            </select>
-                            <table class="schedule-table">
-                                <thead>
-                                    <tr>
-                                        {% for cell in schedule_data.0 %}
-                                            <th>{{ cell }}</th>
-                                        {% endfor %}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for row in schedule_data|slice:"1:" %}
-                                        <tr>
-                                            {% for cell in row %}
-                                                <td>{{ cell }}</td>
-                                            {% endfor %}
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        {% endif %}
-                    </div>
-                </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="{% url 'index' %}" class="active"
+                ><i class="ri-calendar-todo-fill"></i> Schedule</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'dashboard' %}"
+                ><i class="ri-apps-2-fill"></i> Dashboard</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main-content">
+        <h1>Schedule</h1>
+        <div class="form-container">
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group" id="form_group1">
+              <p>{{ form.file.label_tag }}</p>
+              <input type="file" id="fileinp" name="file"  accept=".xlsx" />
+              <span id="spanbtn">Add</span>
             </div>
-        </body>
-        </html>
-        
+            <div class="together">
+                <div class="form-group" style="display: flex; align-items: center;">
+                    {{ form.semestr.label_tag }} {{ form.semestr }}
+                  </div>
+                  <div class="form-group">
+                    {{ form.year.label_tag }} {{ form.year }}
+                  </div>
+            </div>
+            <div class="form-group" id="deadline">
+              {{ form.from_month.label_tag }} {{ form.from_month }}
+              <span> - </span>
+              {{ form.to_month.label_tag }} {{ form.to_month }}
+            </div>
+            <button type="submit" id="submit">Upload</button>
+          </form>
+        </div>
+        <div class="schedule-details">
+          {% if schedule_data %}
+          <h2>Schedule Details</h2>
+          <p><strong>Semester:</strong> {{ semestr }}</p>
+          <p><strong>Year:</strong> {{ year }}</p>
+          <p>
+            <strong>Heating operating period:</strong> {{ from_month }} - {{ to_month }}
+          </p>
+          <label for="lab-select" class="lab-select">Laboratory 1</label>
+          <select id="lab-select">
+            <option value="1">Laboratory 1</option>
+          </select>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                {% for cell in schedule_data.0 %}
+                <th>{{ cell }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in schedule_data|slice:"1:" %}
+              <tr>
+                {% for cell in row %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let spanbtn = document.getElementById("spanbtn")
+    let fileinp = document.getElementById("fileinp")
+
+    spanbtn.addEventListener('click' , ()=>{
+        console.log(fileinp.click());
+    })
+  </script>
+</html>
