@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="{% url 'index' %}" class="active"><i class="ri-calendar-todo-fill"></i> Schedule</a></li>
+                    <li><a href="{% url 'index' %}" class="active"><i class="ri-calendar-todo-fill"></i> Ders Programı</a></li>
                     <li><a href="{% url 'dashboard' %}"><i class="ri-apps-2-fill"></i> Dashboard</a></li>
                 </ul>
             </nav>
@@ -31,10 +31,10 @@
             <div class="form-container">
                 <form id="upload-form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="form-group" id="form_group1">
-                        {{ form.file.label_tag }}
-                        <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn" style="width: 10px;">
-                        <span id="spanbtn" style="width: 40px; margin-left: 70px; height: 15px;">Dosya</span>
+                    <div class="form-group" id="form_group1" style="margin-left: -45px;">
+                        <!-- {{ form.file.label_tag }} -->
+                        <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn" style="width: 10px; margin-left: 50px;">
+                        <span id="spanbtn" style="width: 40px; height: 15px;">Dosya</span>
                     </div>
                     <div class="together">
                       <div class="form-group" style="display: flex; align-items: center;">
@@ -57,8 +57,8 @@
             <div class="schedule-details">
                 {% if sheets_data %}
                     <h2>Dosya</h2>
-                    <p><strong>yarıyıl:</strong> {{ semestr }}</p>
-                    <p><strong>yıl:</strong> {{ year }}</p>
+                    <p><strong>Yarıyıl:</strong> {{ semestr }}</p>
+                    <p><strong>Yıl:</strong> {{ year }}</p>
                     <p><strong>Isıtma çalışma süresi:</strong> {{ from_month }} - {{ to_month }}</p>
 
                     <label for="sheet-select">Dosya seç</label>

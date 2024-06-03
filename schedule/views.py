@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import ScheduleForm
 import openpyxl
 from django.http import JsonResponse
+import datetime
 
 def schedule_dashboard(request):
     return render(request, 'dashboard.html')
@@ -28,7 +29,6 @@ def schedule_view(request):
                 'from_month': dict(form.fields['from_month'].choices)[form.cleaned_data['from_month']],
                 'to_month': dict(form.fields['to_month'].choices)[form.cleaned_data['to_month']],
             }
-            print(schedule_data)
             return render(request, 'index.html', context)
     else:
         form = ScheduleForm()
@@ -45,7 +45,15 @@ def parse_schedule(file):
         ws = wb[sheet_name]
         schedule = []
         for row in ws.iter_rows(values_only=True):
-            schedule.append([cell if cell is not None else '' for cell in row])
+            formatted_row = []
+            for cell in row:
+                if isinstance(cell, datetime.time):
+                    formatted_row.append(cell.strftime('%H:%M'))
+                elif cell is None:
+                    formatted_row.append('')
+                else:
+                    formatted_row.append(cell)
+            schedule.append(formatted_row)
         sheets_data[sheet_name] = schedule
 
     return sheets_data
