@@ -14,13 +14,10 @@ def schedule_view(request):
             schedule_file = request.FILES['file']
             sheets_data = parse_schedule(schedule_file)
             sheet_name = request.POST.get('sheet_name', list(sheets_data.keys())[0])
-            print(sheet_name)
             schedule_data = sheets_data[sheet_name]
 
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-                print("salom")
                 return JsonResponse({'schedule_data': schedule_data})
-            # print(sheets_data)
             context = {
                 'form': form,
                 'schedule_file':schedule_file,
