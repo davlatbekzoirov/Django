@@ -288,3 +288,6 @@ form{
     line-height: 35px;
 }
 
+#schedule-table-body  > tr > td{
+    width: 218px;
+}
