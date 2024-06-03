@@ -33,8 +33,8 @@
                     {% csrf_token %}
                     <div class="form-group" id="form_group1">
                         {{ form.file.label_tag }}
-                        <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn">
-                        <span id="spanbtn">Dosya</span>
+                        <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn" style="width: 10px;">
+                        <span id="spanbtn" style="width: 40px; margin-left: 70px; height: 15px;">Dosya</span>
                     </div>
                     <div class="together">
                       <div class="form-group" style="display: flex; align-items: center;">

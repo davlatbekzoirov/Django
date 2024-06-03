@@ -24,7 +24,7 @@ SEMESTER_CHOICES = [
 ]
 
 class ScheduleForm(forms.Form):
-    file = forms.FileField(label="Eğe")
+    file = forms.FileField(label="Ders Programı:")
     semestr = forms.ChoiceField(choices=SEMESTER_CHOICES, label="yarıyıl")
     year = forms.IntegerField(label="yıl")
     from_month = forms.ChoiceField(choices=MONTH_CHOICES, label="ay")
