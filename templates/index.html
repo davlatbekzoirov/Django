@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Schedule Upload</title>
+    <title>Ders Programı Yükle</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link
@@ -27,14 +27,14 @@
             </nav>
         </div>
         <div class="main-content">
-            <h1>Schedule</h1>
+            <h1>Ders Programı</h1>
             <div class="form-container">
                 <form id="upload-form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group" id="form_group1">
                         {{ form.file.label_tag }}
                         <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn">
-                        <span id="spanbtn">Add</span>
+                        <span id="spanbtn">Dosya</span>
                     </div>
                     <div class="together">
                       <div class="form-group" style="display: flex; align-items: center;">
@@ -51,17 +51,17 @@
                         {{ form.to_month.label_tag }}
                         {{ form.to_month }}
                     </div>
-                    <button type="submit" id="submit">Upload</button>
+                    <button type="submit" id="submit">Yükle</button>
                 </form>
             </div>
             <div class="schedule-details">
                 {% if sheets_data %}
-                    <h2>Schedule Details</h2>
-                    <p><strong>Semester:</strong> {{ semestr }}</p>
-                    <p><strong>Year:</strong> {{ year }}</p>
-                    <p><strong>Heating operating period:</strong> {{ from_month }} - {{ to_month }}</p>
+                    <h2>Dosya</h2>
+                    <p><strong>yarıyıl:</strong> {{ semestr }}</p>
+                    <p><strong>yıl:</strong> {{ year }}</p>
+                    <p><strong>Isıtma çalışma süresi:</strong> {{ from_month }} - {{ to_month }}</p>
 
-                    <label for="sheet-select">Select Sheet</label>
+                    <label for="sheet-select">Dosya seç</label>
                     <select id="sheet-select">
                         {% for sheet_name in sheets_data.keys %}
                             <option value="{{ sheet_name }}">{{ sheet_name }}</option>

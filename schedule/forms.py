@@ -24,11 +24,11 @@ SEMESTER_CHOICES = [
 ]
 
 class ScheduleForm(forms.Form):
-    file = forms.FileField()
-    semestr = forms.ChoiceField(choices=SEMESTER_CHOICES, label="Select a semester")
-    year = forms.IntegerField()
-    from_month = forms.ChoiceField(choices=MONTH_CHOICES, label="Select a start month")
-    to_month = forms.ChoiceField(choices=MONTH_CHOICES, label="Select an end month")
+    file = forms.FileField(label="Eğe")
+    semestr = forms.ChoiceField(choices=SEMESTER_CHOICES, label="yarıyıl")
+    year = forms.IntegerField(label="yıl")
+    from_month = forms.ChoiceField(choices=MONTH_CHOICES, label="ay")
+    to_month = forms.ChoiceField(choices=MONTH_CHOICES, label="ay")
 
     def clean_file(self):
         file = self.cleaned_data.get('file')
