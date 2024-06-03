@@ -17,7 +17,7 @@
         <div class="sidebar">
             <div class="logo">
               <img src="{% static '/image.png' %}" alt="" />
-          <p>BMS</p>
+              <p>BMS</p>
             </div>
             <nav>
                 <ul>
@@ -33,19 +33,19 @@
                     {% csrf_token %}
                     <div class="form-group" id="form_group1">
                         {{ form.file.label_tag }}
-                        <input type="file" name="file"  accept=".xlsx" id="fileinp" class="fileIn">
+                        <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn">
                         <span id="spanbtn">Add</span>
                     </div>
                     <div class="together">
                       <div class="form-group" style="display: flex; align-items: center;">
                           {{ form.semestr.label_tag }} {{ form.semestr }}
-                        </div>
-                        <div class="form-group">
+                      </div>
+                      <div class="form-group">
                           {{ form.year.label_tag }} {{ form.year }}
-                        </div>
+                      </div>
                   </div>
                     <div class="form-group" id="deadline">
-                        {{ form.from_msheets_dataonth.label_tag }}
+                        {{ form.from_month.label_tag }}
                         {{ form.from_month }}
                         <span> - </span>
                         {{ form.to_month.label_tag }}
@@ -59,7 +59,7 @@
                     <h2>Schedule Details</h2>
                     <p><strong>Semester:</strong> {{ semestr }}</p>
                     <p><strong>Year:</strong> {{ year }}</p>
-                    <p><strong>Heatingsheets_data operating period:</strong> {{ from_month }} - {{ to_month }}</p>
+                    <p><strong>Heating operating period:</strong> {{ from_month }} - {{ to_month }}</p>
 
                     <label for="sheet-select">Select Sheet</label>
                     <select id="sheet-select">
@@ -70,7 +70,7 @@
 
                     <table class="schedule-table">
                         <thead id="schedule-table-head">
-                            <tr >
+                            <tr>
                                 {% for cell in schedule_data.0 %}
                                     <th>{{ cell }}</th>
                                 {% endfor %}
@@ -130,25 +130,43 @@
                     }
                 });
             });
+
+            // Load file from localStorage if exists
+            if (localStorage.getItem('uploadedFile')) {
+                const fileData = localStorage.getItem('uploadedFile');
+                const byteCharacters = atob(fileData);
+                const byteNumbers = new Array(byteCharacters.length);
+                for (let i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+                const byteArray = new Uint8Array(byteNumbers);
+                const file = new Blob([byteArray], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+                const dataTransfer = new DataTransfer();
+                const fileItem = new File([file], 'uploadedFile.xlsx');
+                dataTransfer.items.add(fileItem);
+                document.getElementById('fileinp').files = dataTransfer.files;
+            }
+
+            // Save file to localStorage when selected
+            $('#fileinp').on('change', function(){
+                const file = this.files[0];
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const fileData = event.target.result.split(',')[1];
+                    localStorage.setItem('uploadedFile', fileData);
+                };
+                reader.readAsDataURL(file);
+            });
+
+            // Trigger file input click when span button is clicked
+            let spanbtn = document.getElementById("spanbtn");
+            let fileinp = document.getElementById("fileinp");
+
+            spanbtn.addEventListener('click' , () => {
+                fileinp.click();
+            });
         });
-        
-
-        $(document).ready(function(){
-    $('#upload-form').submit(function(event){
-        event.preventDefault(); // Prevent default form submission
-        var formData = new FormData(this);
-        
-    });
-});
-
-
-let spanbtn = document.getElementById("spanbtn")
-    let fileinp = document.getElementById("fileinp")
-    console.log(fileinp.srcElement);
-
-    spanbtn.addEventListener('click' , ()=>{
-        console.log(fileinp.click());
-    })
     </script>
 </body>
 </html>
