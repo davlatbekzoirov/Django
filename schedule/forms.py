@@ -19,16 +19,14 @@ MONTH_CHOICES = [
 SEMESTER_CHOICES = [
     ('1', 'Semester 1'),
     ('2', 'Semester 2'),
-    ('3', 'Semester 3'),
-    ('4', 'Semester 4'),
 ]
 
 class ScheduleForm(forms.Form):
-    file = forms.FileField(label="Ders Programı:")
-    semestr = forms.ChoiceField(choices=SEMESTER_CHOICES, label="Yarıyıl")
-    year = forms.IntegerField(label="Yıl")
-    from_month = forms.ChoiceField(choices=MONTH_CHOICES, label="ay")
-    to_month = forms.ChoiceField(choices=MONTH_CHOICES, label="ay")
+    file = forms.FileField(label="Dosya")
+    semestr = forms.ChoiceField(choices=SEMESTER_CHOICES, label="Yarıyıl", widget=forms.Select(attrs={'placeholder': 'Yarıyılı seç'}))
+    year = forms.IntegerField(label="Yıl", widget=forms.NumberInput(attrs={'placeholder': 'Yılı seç'}))
+    from_month = forms.ChoiceField(choices=MONTH_CHOICES, label="Ay", widget=forms.Select(attrs={'placeholder': 'Ay'}))
+    to_month = forms.ChoiceField(choices=MONTH_CHOICES, label="Ay", widget=forms.Select(attrs={'placeholder': 'Ay'}))
 
     def clean_file(self):
         file = self.cleaned_data.get('file')

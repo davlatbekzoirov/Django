@@ -7,10 +7,7 @@
     <title>Ders Programı Yükle</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -31,10 +28,10 @@
             <div class="form-container">
                 <form id="upload-form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="form-group" id="form_group1" style="margin-left: -45px;">
-                        <!-- {{ form.file.label_tag }} -->
+                    <div class="form-group" id="form_group1">
+                        {{ form.file.label_tag }}
                         <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn" style="width: 10px; margin-left: 50px;">
-                        <span id="spanbtn" style="width: 40px; height: 15px;">Dosya</span>
+                        <span id="spanbtn" style="width: 100px; height: 15px; margin-left: 50px;">Ekle</span>
                     </div>
                     <div class="together">
                       <div class="form-group" style="display: flex; align-items: center;">
@@ -45,10 +42,8 @@
                       </div>
                   </div>
                     <div class="form-group" id="deadline">
-                        {{ form.from_month.label_tag }}
-                        {{ form.from_month }}
+                        Isıtma çalışma süresi:                        {{ form.from_month }}
                         <span> - </span>
-                        {{ form.to_month.label_tag }}
                         {{ form.to_month }}
                     </div>
                     <button type="submit" id="submit">Yükle</button>
@@ -90,14 +85,20 @@
             </div>
         </div>
     </div>
-
     <script>
         $(document).ready(function(){
+            // Function to update button text and file input value
+            function updateButtonText() {
+                var fileName = $('#fileinp').val().split('\\').pop(); // Get the file name
+                $('#spanbtn').text(fileName); // Set button text to file name
+                // $('#submit').text(fileName.length); // Set button text to length of file name
+            }
+    
             $('#sheet-select').change(function(){
                 var sheetName = $(this).val();
                 var formData = new FormData($('#upload-form')[0]);
                 formData.append('sheet_name', sheetName);
-
+    
                 $.ajax({
                     url: '',
                     type: 'POST',
@@ -111,14 +112,14 @@
                         var thead = $('#schedule-table-head');
                         tbody.empty();
                         thead.empty();
-
+    
                         // Render new table header
                         var headerRow = $('<tr></tr>');
                         for(var i = 0; i < scheduleData[0].length; i++){
                             headerRow.append('<th>' + scheduleData[0][i] + '</th>');
                         }
                         thead.append(headerRow);
-
+    
                         // Render new table rows
                         for(var i = 1; i < scheduleData.length; i++){
                             var row = $('<tr></tr>');
@@ -130,7 +131,7 @@
                     }
                 });
             });
-
+    
             // Load file from localStorage if exists
             if (localStorage.getItem('uploadedFile')) {
                 const fileData = localStorage.getItem('uploadedFile');
@@ -141,13 +142,15 @@
                 }
                 const byteArray = new Uint8Array(byteNumbers);
                 const file = new Blob([byteArray], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-
+    
                 const dataTransfer = new DataTransfer();
-                const fileItem = new File([file], 'uploadedFile.xlsx');
+                const fileItem = new File([file], 'schedule.xlsx');
                 dataTransfer.items.add(fileItem);
                 document.getElementById('fileinp').files = dataTransfer.files;
+    
+                updateButtonText(); // Update button text after loading file
             }
-
+    
             // Save file to localStorage when selected
             $('#fileinp').on('change', function(){
                 const file = this.files[0];
@@ -157,16 +160,17 @@
                     localStorage.setItem('uploadedFile', fileData);
                 };
                 reader.readAsDataURL(file);
+                
+                updateButtonText(); // Update button text after selecting file
             });
-
+    
             // Trigger file input click when span button is clicked
             let spanbtn = document.getElementById("spanbtn");
             let fileinp = document.getElementById("fileinp");
-
+    
             spanbtn.addEventListener('click' , () => {
                 fileinp.click();
             });
         });
     </script>
-</body>
-</html>
+    

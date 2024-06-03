@@ -66,9 +66,9 @@ body {
 
 .form-container {
     background: var(--main-color);
-    padding: 20px;
+    padding: 30px; /* Increased padding */
     border-radius: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 60px; /* Increased margin */
     position: relative;
 }
 
