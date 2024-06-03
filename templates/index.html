@@ -69,8 +69,8 @@
                     </select>
 
                     <table class="schedule-table">
-                        <thead>
-                            <tr id="schedule-table-header">
+                        <thead id="schedule-table-head">
+                            <tr >
                                 {% for cell in schedule_data.0 %}
                                     <th>{{ cell }}</th>
                                 {% endfor %}
@@ -108,7 +108,7 @@
                     success: function(data){
                         var scheduleData = data.schedule_data;
                         var tbody = $('#schedule-table-body');
-                        var thead = $('#schedule-table-header');
+                        var thead = $('#schedule-table-head');
                         tbody.empty();
                         thead.empty();
 
@@ -133,36 +133,18 @@
         });
         
 
-
-$(document).ready(function(){
+        $(document).ready(function(){
     $('#upload-form').submit(function(event){
         event.preventDefault(); // Prevent default form submission
         var formData = new FormData(this);
-
-        $.ajax({
-            url: '',
-            type: 'POST',
-            headers: {'X-Requested-With': 'XMLHttpRequest'},
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(data){
-                var sheetsData = data.sheets_data;
-                updateTable(sheetsData); // Update table with retrieved data
-
-                // Clear file input field after successful submission
-                $('#file-input').val('');
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-            }
-        });
+        
     });
 });
 
 
 let spanbtn = document.getElementById("spanbtn")
     let fileinp = document.getElementById("fileinp")
+    console.log(fileinp.srcElement);
 
     spanbtn.addEventListener('click' , ()=>{
         console.log(fileinp.click());
