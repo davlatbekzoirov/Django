@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .btn-primary {
+            background-color: #4663B3;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 15px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -24,7 +37,18 @@
             </nav>
         </div>
         <div class="main-content">
-            <h1>Ders Programı</h1>
+            <div style="display: flex; justify-content: space-between; padding-right: 50px;">
+                <h1 >Ders Programı <h5>
+                    
+                    {% if request.user.is_authenticated %}
+        
+                    <a href="{% url 'logout' %}" class="btn btn-primary">Çıkış yap</a>
+                {% else %}
+                <a href="{% url 'login' %}" class="btn btn-primary">Giriş yap</a>
+                {% endif %}</h5>
+                </h1>
+                
+            </div>
             <div class="form-container">
                 <form id="upload-form" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -33,18 +57,8 @@
                         <input type="file" name="file" accept=".xlsx" id="fileinp" class="fileIn" style="width: 10px; margin-left: 50px;">
                         <span id="spanbtn" style="width: 100px; height: 15px; margin-left: 50px;">Ekle</span>
                     </div>
-                    <div class="together">
-                      <div class="form-group" style="display: flex; align-items: center;">
-                          {{ form.semestr.label_tag }} {{ form.semestr }}
-                      </div>
-                      <div class="form-group">
-                          {{ form.year.label_tag }} {{ form.year }}
-                      </div>
-                  </div>
                     <div class="form-group" id="deadline">
-                        Isıtma çalışma süresi:                        {{ form.from_month }}
-                        <span> - </span>
-                        {{ form.to_month }}
+                        Isıtma çalışma süresi: {{ form.from_month }} <span> - </span> {{ form.to_month }}
                     </div>
                     <button type="submit" id="submit">Yükle</button>
                 </form>
@@ -52,17 +66,20 @@
             <div class="schedule-details">
                 {% if sheets_data %}
                     <h2>Dosya</h2>
-                    <p><strong>Yarıyıl:</strong> {{ semestr }}</p>
-                    <p><strong>Yıl:</strong> {{ year }}</p>
                     <p><strong>Isıtma çalışma süresi:</strong> {{ from_month }} - {{ to_month }}</p>
-
+                    
                     <label for="sheet-select">Dosya seç</label>
                     <select id="sheet-select">
                         {% for sheet_name in sheets_data.keys %}
                             <option value="{{ sheet_name }}">{{ sheet_name }}</option>
                         {% endfor %}
                     </select>
-
+                    <div class="holidays">
+                        {% for i in "1234567" %}
+                            <label for="holiday_{{ i }}">Tatil</label>
+                            <input type="checkbox" id="holiday_{{ i }}" name="holiday_{{ i }}" {% if i|add:"0" in holidays %}checked{% endif %}>
+                        {% endfor %}
+                    </div>
                     <table class="schedule-table">
                         <thead id="schedule-table-head">
                             <tr>
@@ -80,7 +97,7 @@
                                 </tr>
                             {% endfor %}
                         </tbody>
-                    </table>
+                    </table>                    
                 {% endif %}
             </div>
         </div>
@@ -93,7 +110,8 @@
                 $('#spanbtn').text(fileName); // Set button text to file name
                 // $('#submit').text(fileName.length); // Set button text to length of file name
             }
-    
+            var csrfToken = "{{ csrf_token }}";
+
             $('#sheet-select').change(function(){
                 var sheetName = $(this).val();
                 var formData = new FormData($('#upload-form')[0]);
@@ -102,7 +120,7 @@
                 $.ajax({
                     url: '',
                     type: 'POST',
-                    headers: {'X-Requested-With': 'XMLHttpRequest'},
+                    headers: { "X-CSRFToken": csrfToken },
                     data: formData,
                     processData: false,
                     contentType: false,
@@ -173,4 +191,5 @@
             });
         });
     </script>
-    
+</body>
+</html>

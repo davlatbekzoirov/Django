@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="w-full flex flex-col items-center mt-[10%]">
+        <div class="w-full flex flex-col items-center justify-center">
+            <div class="text-[30px] font-[Poppins] text-blue-600 font-bold">Giriş yap</div>
+            <div class="text-gray-400 font-[Poppins] text-[12px] mt-[10px]">Devam etmek için oturum açın</div>
+        </div>
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="w-full flex flex-col items-center font-[Poppins]">
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">Username</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" type="text" placeholder="text" name="username">
+                    {% if form.username.errors %}
+                        <div class="text-red-500 text-[12px] mt-[5px]">
+                            {{ form.username.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">Password</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" type="password" placeholder="*****" name="password">
+                    {% if form.password.errors %}
+                        <div class="text-red-500 text-[12px] mt-[5px]">
+                            {{ form.password.errors }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="flex justify-center w-full">
+                <button class="mt-[30px] w-[150px] h-[35px] bg-blue-600 rounded-[10px] text-white font-[Poppins] text-[12px] font-bold" type="submit">Login</button>
+            </div>
+            {% if form.non_field_errors %}
+                <div class="text-red-500 text-[12px] mt-[10px]">
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+        </form>
+        <div class="text-gray-400 font-[Poppins] text-[12px] mt-2">
+            Hesabınız yok mu?  <a href="{% url 'register' %}" class="text-blue-600">Buradan kaydolun</a>
+        </div>
+    </div>
+</body>
+</html>

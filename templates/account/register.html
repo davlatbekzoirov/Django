@@ -1,0 +1,77 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+    <div class="w-full flex flex-col items-center mt-[5%]">
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <div class="w-full flex flex-col items-center justify-center">
+                <div class="text-[30px] font-[Poppins] text-blue-600 font-bold">
+                    Kayıt Ol
+                </div>
+                <div class="text-gray-400 font-[Poppins] text-[12px] mt-[10px]">
+                    Devam etmek için kayıt olun <a href="{% url 'login' %}" class="text-blue-600">Giriş yap</a>
+                </div>
+            </div>
+            
+            <div class="w-full flex flex-col items-center font-[Poppins]">
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">KULLANICI ADI</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" name="username" type="text" value="" required>
+                    {% if form.username.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.username.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">İSİM</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" name="first_name" type="text" value="" required>
+                    {% if form.first_name.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">SOYADI</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" name="last_name" type="text" value="" required>
+                    {% if form.last_name.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">E-POSTA</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" name="email" type="email" value="" placeholder="örnek@gmail.com" required>
+                    {% if form.email.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">ŞİFRE</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" type="password" name="password1" required>
+                    {% if form.password1.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.password1.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mt-[15px] flex flex-col">
+                    <label class="text-[12px] text-gray-400">Şifre Tekrarı</label>
+                    <input class="w-[250px] h-[35px] rounded-[5px] bg-gray-100 text-black font-[Poppins] text-[12px] pl-3" type="password" name="password2" required>
+                    {% if form.password2.errors %}
+                        <div class="text-red-600 text-[12px]">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="flex justify-center w-full">
+                <button class="mt-[30px] w-[150px] h-[35px] bg-blue-600 rounded-[10px] text-white font-[Poppins] text-[12px] font-bold">Kayıt Ol</button>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

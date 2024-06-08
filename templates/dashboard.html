@@ -1,140 +1,138 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link
-    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
-    rel="stylesheet"
-  />
-
-
-  </head>
-  <body>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
     <div class="container">
-      <div class="sidebar">
-        <div class="logo">
-          <img src="{% static '/image.png' %}" alt="" />
-          <p>BMS</p>
+        <div class="sidebar">
+            <div class="logo">
+                <img src="{% static '/image.png' %}" alt="" />
+                <p>BMS</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'index' %}"><i class="ri-calendar-todo-fill"></i> Schedule</a></li>
+                    <li>
+                        <a href="{% url 'dashboard' %}" class="active"> <i class="ri-apps-2-fill"></i> Dashboard</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-          <ul>
-            <li><a href="{% url 'index' %}"><i class="ri-calendar-todo-fill"></i> Schedule</a></li>
-            <li>
-              <a href="{% url 'dashboard' %}" class="active"> <i class="ri-apps-2-fill"></i> Dashboard</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-      <div class="main-content">
-        <h1>Dashboard</h1>
-        <div class="form-container">
-            <div class="together1">
-                <div class="form-group">
-                    <label for="startDate">Start date:</label>
-                    <input type="date" id="startDate" />
-                  </div>
-                  <div class="form-group">
-                    <label for="endDate">End date:</label>
-                    <input type="date" id="endDate" />
-                  </div>
-        
+        <div class="main-content">
+            <h1>Dashboard</h1>
+            <div class="form-container">
+                <div class="form-group group-laboratory">
+                    <label for="laboratory">Laboratory:</label>
+                    <input type="text" id="laboratory" placeholder="Laboratory"/>
+                </div>
+                <button id="filterButton">Filter</button>
             </div>
-            <div class="form-group group-laboratory">
-            <label for="laboratory">Laboratory:</label>
-            <input type="text" id="laboratory" placeholder="Laboratory" />
-          </div>
-          <button id="filterButton">Filter</button>
+            <div class="dashboard-details">
+                <h2>Laboratory name</h2>
+                <div class="time-buttons">
+                    <button class="time-button active">Day</button>
+                    <button class="time-button">Week</button>
+                    <button class="time-button">Month</button>
+                    <button class="time-button">Year</button>
+                </div>
+                <div class="dashboard-metrics">
+                    <div class="metric">
+                        <p>Temperature (inside)</p>
+                        <p>--</p>
+                    </div>
+                    <div class="metric">
+                        <p>Temperature (outside)</p>
+                        <p>--</p>
+                    </div>
+                    <div class="metric">
+                        <p>Energy</p>
+                        <p>--</p>
+                    </div>
+                </div>
+                <div class="chart">
+                    <canvas id="chart"></canvas>
+                </div>
+                <div class="controls">
+                    <h3>Control</h3>
+                    <div class="control-item">
+                        <label for="lightingToggle">Lighting</label>
+                        <input type="checkbox" id="lightingToggle" />
+                    </div>
+                    <div class="control-item">
+                        <label for="heatingToggle">Heating</label>
+                        <input type="checkbox" id="heatingToggle" />
+                    </div>
+                    <h3>Heating Schedule</h3>
+                    <div class="heating-schedule">
+                        <div>
+                            <label for="turnOnTime">Turn on:</label>
+                            <input type="time" id="turnOnTime" />
+                        </div>
+                        <div>
+                            <label for="turnOffTime">Turn off:</label>
+                            <input type="time" id="turnOffTime" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="dashboard-details">
-          <h2>Laboratory name</h2>
-          <div class="time-buttons">
-            <button class="time-button active">Day</button>
-            <button class="time-button">Week</button>
-            <button class="time-button">Month</button>
-            <button class="time-button">Year</button>
-          </div>
-          <div class="dashboard-metrics">
-            <div class="metric">
-              <p>Temperature (inside)</p>
-              <p>--</p>
-            </div>
-            <div class="metric">
-              <p>Temperature (outside)</p>
-              <p>--</p>
-            </div>
-            <div class="metric">
-              <p>Energy</p>
-              <p>--</p>
-            </div>
-          </div>
-          <div class="chart">
-            <canvas id="chart"></canvas>
-          </div>
-          <div class="controls">
-            <h3>Control</h3>
-            <div class="control-item">
-              <label for="lightingToggle">Lighting</label>
-              <input type="checkbox" id="lightingToggle" />
-            </div>
-            <div class="control-item">
-              <label for="heatingToggle">Heating</label>
-              <input type="checkbox" id="heatingToggle" />
-            </div>
-            <h3>Heating Schedule</h3>
-            <div class="heating-schedule">
-              <div>
-                <label for="turnOnTime">Turn on:</label>
-                <input type="time" id="turnOnTime" />
-              </div>
-              <div>
-                <label for="turnOffTime">Turn off:</label>
-                <input type="time" id="turnOffTime" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-      const ctx = document.getElementById("chart").getContext("2d");
-      const chart = new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: [
-            "09:00",
-            "10:00",
-            "11:00",
-            "12:00",
-            "13:00",
-            "14:00",
-            "15:00",
-            "16:00",
-            "17:00",
-          ],
-          datasets: [
-            {
-              label: "Temperature",
-              data: [20, 21, 22, 23, 22, 21, 20, 19, 18],
-              borderColor: "rgba(75, 192, 192, 1)",
-              borderWidth: 1,
-              fill: false,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById("chart").getContext("2d");
+            const chart = new Chart(ctx, {
+                type: "line",
+                data: {
+                    labels: chartData.labels,
+                    datasets: [
+                        {
+                            label: "Temperature (inside)",
+                            data: chartData.temp_inside,
+                            borderColor: "rgba(75, 192, 192, 1)",
+                            borderWidth: 1,
+                            fill: false,
+                        },
+                        {
+                            label: "Temperature (outside)",
+                            data: chartData.temp_outside,
+                            borderColor: "rgba(255, 99, 132, 1)",
+                            borderWidth: 1,
+                            fill: false,
+                        },
+                        {
+                            label: "Temperature Difference",
+                            data: chartData.temp_dif,
+                            borderColor: "rgba(54, 162, 235, 1)",
+                            borderWidth: 1,
+                            fill: false,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                        },
+                    },
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data) {
+                                const label = data.datasets[tooltipItem.datasetIndex].label || '';
+                                return `${label}: ${tooltipItem.yLabel}°C at ${chartData.labels[tooltipItem.index]}`;
+                            }
+                        }
+                    }
+                },
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
