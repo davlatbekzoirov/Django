@@ -291,3 +291,8 @@ form{
 #schedule-table-body  > tr > td{
     width: 218px;
 }
+.holidays{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}

@@ -20,6 +20,5 @@ class LabTemperatureAdmin(admin.ModelAdmin):
 
 # Holiday modelini admin panelga qo'shish
 admin.site.register(Holiday, HolidayAdmin)
-
 # LabTemperature modelini admin panelga qo'shish
 admin.site.register(LabTemperature, LabTemperatureAdmin)

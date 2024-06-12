@@ -14,11 +14,12 @@ def get_lab_data(request, lab_id):
     data = {
         'dates': [entry.date.strftime('%Y-%m-%d') for entry in lab_data],
         'times': [entry.time.strftime('%H:%M:%S') for entry in lab_data],
-        'temp_inside': [entry.temp_inside for entry in lab_data],
+        'temp_inside': [entry.temp_inside for entry in lab_data],  
         'temp_outside': [entry.temp_outside for entry in lab_data],
         'temp_dif': [entry.temp_dif for entry in lab_data],
     }
     return JsonResponse(data)
+
 
 
 def schedule_view(request):

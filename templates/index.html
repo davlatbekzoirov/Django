@@ -16,9 +16,21 @@
             text-decoration: none;
             border-radius: 15px;
         }
-
         .btn-primary:hover {
             background-color: #0056b3;
+        }
+        .holidays{
+            display: flex;
+            justify-content: end;
+            width: 100%;
+            font-size: 30px;
+            padding-right: 10px;
+        }
+        .lTatil{
+            margin-right: 10px;
+        }
+        .tatilInput{
+            margin-right: 20px;
         }
     </style>
 </head>
@@ -76,8 +88,8 @@
                     </select>
                     <div class="holidays">
                         {% for i in "1234567" %}
-                            <label for="holiday_{{ i }}">Tatil</label>
-                            <input type="checkbox" id="holiday_{{ i }}" name="holiday_{{ i }}" {% if i|add:"0" in holidays %}checked{% endif %}>
+                            <label class="lTatil" for="holiday_{{ i }}">Tatil</label>
+                            <input class="tatilInput" type="checkbox" id="holiday_{{ i }}" name="holiday_{{ i }}" {% if i|add:"0" in holidays %}checked{% endif %}>
                         {% endfor %}
                     </div>
                     <table class="schedule-table">

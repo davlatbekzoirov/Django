@@ -16,7 +16,11 @@ class LabTemperature(models.Model):
     day = models.IntegerField()
     temp_inside = models.FloatField()
     temp_outside = models.FloatField()
-    temp_dif = models.FloatField()
+    temp_dif = models.FloatField(editable=False)
+    
+    def save(self, *args, **kwargs):
+        self.temp_dif = self.temp_outside - self.temp_inside
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"Lab {self.lab_id} - {self.date} {self.time}"
