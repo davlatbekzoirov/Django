@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Online Store</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="Free HTML Templates" name="keywords">
+      <meta content="Free HTML Templates" name="description">
+      
+      <link href="{% static 'css/animate-wow.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+      <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+      <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+      <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      
+   </head>
+   <body>
+      <div class="cooming-soon-box">
+         <div class="soon-gradient">
+            <div class="map"></div>
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-6 col-lg-offset-3">
+                     <div class="top-soon clearfix">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <div class="cooming-logo">
+                              <a href="#"><img width="100px" src="{% static 'images/logo_w.png' %}" alt="" /></a>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                           <ul class="right-flag">
+                              <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>O'zgartirish</span> <img src="{% static 'images/uzbekistan_32px.ico' %}" alt="" / > </a> </li>
+                           </ul>
+                        </div>
+                     </div>
+                     <div class="expand">
+                        <h2>Biznesni kengaytirish sizni muvaffaqiyatga ilhomlantiradi</h2>
+                        <p class="lead">Ammo zavqni ayblab, og'riqni maqtaganlarning bu tug'ma xatosi qayerdan ekanligini ko'rishingiz uchun men hamma narsani ochaman.
+                           Men o'sha haqiqat kashfiyotchisi va go'yo baxtli hayot me'mori aytgan narsalarni tushuntiraman. Chunki hech kim zavq olishni xohlamaydi, chunki bu zavqdir
+                           u qaytaradimi yoki nafratlanadimi yoki qochadimi, lekin aql bilan zavqlanishga ergashishni bilmaganlar katta azobga duchor bo'lganlari uchun.<br><br>Ro'yxatdan o'ting va ilhom oling!
+                        </p>
+                     </div>
+                     <div class="get-box">
+                        <h4>Ishga tushganimizda bildirishnoma oling</h4>
+                        <form class="get-form">
+                           <input type="email" placeholder="Enter your e-mail" />
+                           <button class="btn btn-primary"><a href="/login">Davom etish</a></button>
+                        </form>
+                        <p>Chamb ishga tushgandan keyin sizga xabar beramz.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-12">
+                     <div class="cooming-pc-box wow fadeIn">
+                        <img src="{% static 'images/cooming-pc.png' %}" alt="" />
+                     </div>
+                  </div>
+                  <div class="col-lg-6 col-lg-offset-3">
+                     <div class="soon-does-box">
+                        <h2>Chamb nima qiladi?</h2>
+                        <p>Chamb uzoq muddatli foydali munosabatlarni yaratish uchun xaridorlar va tovarlar yetkazib beruvchilarni birlashtiradi. Bundan tashqari, hech kim yo'q
+                           og'riqning o'zi, chunki og'riqni sevish, ta'qib qilish, erishish kerak, lekin bunday paytlar hech qachon tug'ilish va og'riq bilan sodir bo'lmagani uchun
+                           u qandaydir katta zavq izlasin. Eng kichik tafsilotlarga kelish uchun
+                        </p>
+                        <p>Ammo men sizga zavqni qoralash va og'riqni maqtash kabi noto'g'ri g'oyalar qanday paydo bo'lganini tushuntirishim kerak va men sizga to'liq ma'lumot beraman.
+                           tuzum haqida ma’lumot berib, haqiqatning buyuk kashfiyotchisi, inson baxti bunyodkorining haqiqiy ta’limotlarini tushuntirib bering.
+                        </p>
+                        <p>Ammo haqiqatda biz hozirgi zavqlarning xushomadgo'yligi bilan yumshatilgan va azob-uqubatlardan buziladigan adolatli nafratga loyiq bo'lganlarni ikkalamiz ham ayblaymiz va pastga tushiramiz.
+                           Ular nafsga ko'r bo'lib, qanday balolarga duchor bo'lishlarini oldindan bilmaydilar.
+                           bu mehnat va azoblarning parvozi.
+                        </p>
+                     </div>
+                     <div class="bot-box">
+                        <p>Barcha huquqlar himoyalangan. Kompaniya nomi © 2018 | contact@Chamb.com</p>
+
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade lug" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">To`g`irlash</h4>
+               </div>
+               <div class="modal-body">
+                  <ul>
+                     <li><a href="#"><img src="{% static 'images/rus.ico' %}" alt="" />Русский</a></li>
+                     <li><a href="#"><img src="{% static 'images/uzb.ico' %}" alt="" /> Uzbek </a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--main js--> 
+      <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script> 
+      <!--bootstrap js--> 
+      <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+      <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+      <script src="{% static 'js/slick.min.js' %}"></script> 
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!--custom js--> 
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>

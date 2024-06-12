@@ -1,0 +1,287 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Online Store</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="Free HTML Templates" name="keywords">
+      <meta content="Free HTML Templates" name="description">
+      
+      <link href="{% static 'css/animate-wow.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+      <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+      <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+      <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      
+   </head>
+   <body>
+      <header id="header" class="top-head">
+         <!-- Static navbar -->
+         <nav class="navbar navbar-default">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-4 col-sm-12 left-rs">
+                     <div class="navbar-header">
+                        <button type="button" id="top-menu" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"> 
+                        <span class="sr-only">Navigatsiyani yoqish/yopish</span> 
+                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span> 
+                        </button>
+                        <a href="/" class="navbar-brand"><img src="{% static 'images/logo.png' %}" alt="" /></a>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-12">
+                     <div class="right-nav">
+                        <div class="help-r hidden-xs">
+                           <div class="help-box">
+                              <ul>
+                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>O'zgartirish</span> <img src="{% static 'images/uzbekistan_32px.ico' %}" alt="" / > </a> </li>
+                                 <li> <a href="{% url 'help' %}"><img class="h-i" src="{% static 'images/help-icon.png' %}" alt="" /> Yordam </a> </li>
+                              </ul>
+                           </div>
+                        </div>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--/.container-fluid --> 
+         </nav>
+      </header>
+      <!-- Modal -->
+      <div class="modal fade lug" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">O'zgartirish</h4>
+               </div>
+               <div class="modal-body">
+                  <ul>
+                     <li><a href="#"><img src="{% static 'images/rus.ico' %}" alt="" />Русский</a></li>
+                     <li><a href="#"><img src="{% static 'images/uzb.ico' %}" alt="" /> Uzbek </a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="sidebar" class="top-nav">
+         <ul id="sidebar-nav" class="sidebar-nav">
+            <li><a href="{% url 'help' %}">Yordam</a></li>
+            <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi</a></li>
+            <li><a href="#">Biznes uchun chamb</a></li>
+         </ul>
+      </div>
+      <div class="terms-conditions">
+         <div class="terms-title">
+            <div class="container">
+               <div class="row">
+                  <ol class="breadcrumb">
+                     <li><a href="/">Bosh sahifa </a></li>
+                     <li class="active">Foydalanish shartlari</li>
+                  </ol>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h2>Foydalanish shartlari</h2>
+                     <p>Ommabop e'tiqoddan farqli o'laroq, Lorem Ipsum shunchaki tasodifiy matn emas. Uning ildizlari miloddan avvalgi 45-yillardagi klassik lotin adabiyotidan kelib chiqqan.
+                        uning yoshi 2000 yildan oshadi. Virjiniya shtatidagi Xempden-Sidney kollejining lotin tili professori Richard MakKlintok noaniq lotincha so‘zlardan birini qidirdi.
+                     </p>
+                     <p>Ammo biz haqiqatan ham adolatli nafratga loyiq bo'lganlarni, hozirgi zavqlarning xushomadgo'yligi bilan yumshaganlarni va qanday azob va qayg'ulardan buzilganlarni ayblaymiz.
+                        Ular nafsdan ko‘r bo‘ladilar, uni rizqlantirmaydilar va aqlning yumshoqligi, ya’ni mehnat va iztiroblar parvozi tufayli o‘z vazifalarini tark etganlar ham xuddi shunday aybdordirlar. Va bular
+                        Darhaqiqat, narsalarni farqlash oson va maqsadga muvofiqdir. Bo'sh vaqtimizda, tanlashda erkin bo'lganimizda, eng yaxshisini qilishimizga hech narsa to'sqinlik qilmaydi
+                        biz o'zimizga yoqadigan narsani qila olamiz, barcha zavqlarni qabul qilish kerak, barcha og'riqlarni qaytarish kerak.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Cookies</h3>
+                     <p>Boshqa tomondan, biz lahzalik zavq-shavq jozibasi bilan aldanib, ruhiy tushkunlikka tushgan odamlarni adolatli g'azab va nafrat bilan qoralaymiz.
+                        istaklar shu qadar ko'r bo'lib qolganki, ular og'riq va qiyinchiliklarni oldindan ko'ra olmaydilar; Va bir xil ayb o'z vazifasini bajarmaganlargadir
+                        orqali aytish bilan bir xil bo'lgan iroda zaifligi orqali
+                     </p>
+                     <p>Bu holatlar juda oddiy va ularni ajratish oson. Erkin soatda, bizning tanlov kuchimiz chegaralanmagan va hech narsa bizning mavjudligimizga to'sqinlik qilmasa
+                        Biz eng yaxshi ko'rgan narsani qila oladigan, har qanday zavqni kutib olish va har qanday azobdan qochish kerak. Lekin muayyan sharoitlarda va majburiyat da'volari tufayli yoki
+                        biznes majburiyatlari u tez-tez sodir bo'ladi, deb zavq
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Litsenziya</h3>
+                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
+                        veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia 
+                        consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Siz qilmasligingiz kerak</h3>
+                     <p>Chamb.com shaklidagi materialni qayta nashr qilish<br>
+                        Https: Chamb.com shaklidagi materialni sotish, ijaraga berish yoki sub-litsenziya<br>
+                        Chamb.com shaklidagi materialni ko'paytirish, takrorlash yoki nusxalash<br>
+                        Chamb kontentini qayta tarqatish (agar kontent qayta tarqatish uchun maxsus ishlab chiqilmagan bo'lsa).
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Foydalanuvchilar izohlari</h3>
+                     <p>Tu  shbu Shartnoma imzolangan kundan boshlanadi. <br>
+                        Ushbu veb-saytning ba'zi qismlari foydalanuvchilarga veb-sayt sohalarida fikr, ma'lumot, materiallar va ma'lumotlarni ("Izohlar") joylashtirish va almashish imkoniyatini beradi. Chamb sharhlarni veb-saytda paydo bo'lishidan oldin ko'rib chiqmaydi, tahrir qilmaydi, nashr etmaydi yoki ko'rib chiqmaydi va Sharhlar Chamb, uning agentlari yoki filiallarining qarashlari yoki fikrlarini aks ettirmaydi. Sharhlar bunday fikr yoki fikrni joylashtirgan shaxsning nuqtai nazari va fikrini aks ettiradi. Amaldagi qonunlar tomonidan ruxsat etilgan darajada Chambll Sharhlar uchun yoki Sharhlardan har qanday foydalanish va/yoki e'lon qilish va/yoki ko'rinishi natijasida etkazilgan va yoki ko'rilgan yo'qotishlar, javobgarlik, zararlar yoki xarajatlar uchun javobgar bo'lmaydi. ushbu veb-saytda.<br>
+                        Chamb barcha Sharhlarni kuzatish va oʻzining mutlaq ixtiyoriga koʻra nomaqbul, haqoratomuz yoki ushbu Shartlarni buzgan deb hisoblagan har qanday Sharhlarni olib tashlash huquqini oʻzida saqlab qoladi.<br>
+                        Siz quyidagilarni kafolatlaysiz va tasdiqlaysiz:<br>
+                        Siz sharhlaringizni bizning veb-saytimizda joylashtirish huquqiga egasiz va buning uchun barcha zarur litsenziyalar va roziliklarga egasiz; <br>
+                        Sharhlar hech qanday intellektual mulk huquqini, jumladan, cheklanmagan holda mualliflik huquqi, patent yoki tovar belgisi yoki uchinchi tomonning boshqa mulkiy huquqlarini buzmaydi; <br>
+                        Sharhlarda har qanday tuhmat, tuhmat, haqoratli, odobsiz yoki boshqa noqonuniy materiallar yoki shaxsiy hayotga tajovuz qiluvchi materiallar mavjud emas<br>
+                        Sharhlar biznes yoki odatiy yoki tijorat faoliyati yoki noqonuniy faoliyatni taklif qilish yoki targ'ib qilish uchun ishlatilmaydi. <br>
+                        Siz shu bilan Chambga har qanday va barcha shakllarda, formatlarda yoki ommaviy axborot vositalarida har qanday Sharhlaringizdan foydalanish, ko'paytirish va tahrirlash uchun foydalanish, ko'paytirish, tahrirlash va boshqalarga ruxsat berish uchun eksklyuziv royaltisiz litsenziyani berasiz.
+                     </p>
+                     <p>Onlayn katalog distribyutorlari bizni ma'lumotnomada ro'yxatga olishganda, ular boshqa ro'yxatga olingan korxonalarning veb-saytlariga havola qilganidek, bizning veb-saytimizga havola qilishlari mumkin;
+                        va <br>Tizim bo'ylab akkreditatsiyalangan korxonalar, nodavlat notijorat tashkilotlari, xayriya savdo markazlari va bizning veb-saytimizga havola qilinmasligi mumkin bo'lgan xayriya mablag' yig'ish guruhlari bundan mustasno. <br> Ushbu tashkilotlar bizning bosh sahifamizga, nashrlarga yoki boshqa veb-sayt ma'lumotlariga havola qilishi mumkin, agar havola: (a) hech qanday tarzda chalg'ituvchi bo'lmasa;
+                        (b) soxta homiylik, ma'qullash yoki bog'lovchi tomon va uning mahsulotlari yoki xizmatlarini tasdiqlashni anglatmaydi; va (c) bog‘lovchi tomonning sayti kontekstiga to‘g‘ri keladi.<br> Biz o‘z ixtiyorimizga ko‘ra quyidagi turdagi tashkilotlarning boshqa havola so‘rovlarini ko‘rib chiqishimiz va tasdiqlashimiz mumkin:<br> keng tarqalgan iste’molchi va/yoki biznes axborot manbalari, masalan Savdo palatalari, Amerika avtomobil assotsiatsiyasi, AARP va iste'molchilar ittifoqi sifatida;<br>
+                        dot.com hamjamiyat saytlari;<br>
+                        assotsiatsiyalar yoki xayriya tashkilotlarini ifodalovchi boshqa guruhlar, shu jumladan xayriya saytlari, onlayn katalog distribyutorlari;<br>
+                        internet portallari;<br>
+                        asosiy mijozlari biznes bo'lgan buxgalteriya, yuridik va konsalting firmalari; va<br>
+                        taʼlim muassasalari va savdo birlashmalari.<br> Agar biz ushbu tashkilotlarning havola soʻrovlarini maʼqullaymiz: (a) havola bizga yoki akkreditatsiyadan oʻtgan korxonalarimizga salbiy taʼsir koʻrsatmaydi (masalan, savdo uyushmalari yoki tabiatan shubhali turlarni ifodalovchi boshqa tashkilotlar). uyda ishlash imkoniyatlari kabi biznesni bog'lashga yo'l qo'yilmaydi); (b) tashkilotning biz bilan qoniqarsiz rekordi yo'q; (c) giperhavola bilan bog'liq ko'rinishning biz uchun foydasi yo'qligidan ustundir; va (d) agar havola umumiy resurs ma'lumotlari kontekstida bo'lsa yoki tashkilotning missiyasini ilgari suruvchi axborot byulleteni yoki shunga o'xshash mahsulotdagi tahririyat mazmuniga mos kelsa.
+                     </p>
+                     <p>Ushbu tashkilotlar bizning bosh sahifamizga, nashrlarga yoki boshqa veb-sayt ma'lumotlariga havola qilishlari mumkin, agar havola: (a) hech qanday tarzda chalg'itmasa; (b) soxta homiylik, ma'qullash yoki bog'lovchi tomon va uning mahsulotlari yoki xizmatlarini tasdiqlashni anglatmaydi; va (c) bog'lovchi tomonning sayti kontekstiga mos keladi.</p>
+                     <p>Agar siz yuqoridagi 2-bandda sanab o'tilgan tashkilotlar qatorida bo'lsangiz va bizning veb-saytimizga ulanishga qiziqsangiz, bu haqda info@Chamb.com elektron pochta manziliga xabar yuborishingiz kerak. Iltimos, ismingizni, tashkilotingiz nomini, aloqa ma'lumotlarini (masalan, telefon raqami va/yoki elektron pochta manzili), shuningdek, saytingizning URL manzilini, veb-saytimizga havola qilmoqchi bo'lgan har qanday URL manzillar ro'yxatini kiriting. va saytimizdagi siz bog'lamoqchi bo'lgan URL(lar)ning ro'yxati. Javob berish uchun 2-3 hafta vaqt bering.</p>
+                     <p>Tasdiqlangan tashkilotlar bizning veb-saytimizga quyidagi tarzda havola qilishi mumkin:</p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Bizning korporativ nomimizdan foydalangan holda; yoki</h3>
+                     <p>Yagona resurs lokatoridan (veb-manzil) foydalanish orqali; yoki<br>
+                        Bizning veb-saytimizning yoki unga bog'langan materialning har qanday boshqa tavsifidan foydalanish, bog'langan tomonning saytidagi kontentning konteksti va formatida mantiqiy bo'ladi.<br>
+                        Chamb logotipi yoki boshqa sanʼat asarlaridan savdo belgisi litsenziya shartnomasi boʻlmagan holda bogʻlanish uchun foydalanishga ruxsat berilmaydi.
+                     </p>
+                     <p>Biz ushbu veb-sayt ma'lumotlarining to'g'riligini ta'minlashga harakat qilsak-da, biz uning to'liqligi yoki aniqligiga kafolat bermaymiz; yoki veb-sayt mavjud bo'lishini ta'minlash majburiyatini yuklamang yoki
+                        veb-saytdagi materiallar yangilanganligi.
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-12">
+                  <div class="terms-box">
+                     <h3>Ogohlantiruv/Rad etishga mumkin asoslar</h3>
+                     <p>Amaldagi qonunlar tomonidan ruxsat etilgan maksimal darajada biz veb-saytimizga va ushbu veb-saytdan foydalanishga oid barcha bayonotlar, kafolatlar va qoidalarni (shu jumladan, hech qanday cheklovsiz) istisno qilamiz.
+                        qoniqarli farovonlik, maqsadga muvofiqlik va/yoki oqilona ehtiyotkorlik va mahoratdan foydalanish bo'yicha qonun tomonidan nazarda tutilgan kafolatlar). Rad etishda hech narsa:
+                     </p>
+                     <p>beparvolik natijasida o'lim yoki shaxsiy jarohatlar uchun bizning yoki sizning javobgarligingizni cheklash yoki istisno qilish;
+                        firibgarlik yoki yolg‘on ma’lumot uchun bizning yoki sizning javobgarligingizni cheklash yoki istisno qilish;<br>
+                        amaldagi eng past darajadan chiqarib tashlanmaydigan bizning yoki sizning majburiyatlaringizni cheklash; yoki<br>
+                        amaldagi qonunchilikka binoan chiqarib tashlanmasligi mumkin bo'lgan har qanday bizning yoki sizning majburiyatlaringizni istisno qiling.<br>
+                        Ushbu bo'limda va ushbu rad etishning boshqa joylarida belgilangan javobgarlik cheklovlari va istisnolari: (a) paragrafga bo'ysunadi; va (b) rad etish bo'yicha yuzaga keladigan barcha majburiyatlarni boshqaradi<br>
+                        yoki ushbu rad etish mavzusiga, shu jumladan shartnomada, huquqbuzarlik (shu jumladan beparvolik) va qonun bilan belgilangan majburiyatlarni buzganlik uchun kelib chiqadigan majburiyatlar bilan bog'liq.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer>
+         <div class="main-footer">
+            <div class="container">
+               <div class="row">
+                  <div class="footer-link-box clearfix">
+                     <div class="col-md-6 col-sm-6">
+                        <div class="left-f-box">
+                           <div class="col-sm-4">
+                              <h2>SOTISH</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi yetkazib beruvchilar</a></li>
+                                 <li><a href="{% url 'pricing' %}">Narxlash</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Yetkazib beruvchilar uchun tez-tez so‘raladigan savollar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>XARID OLING</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi xaridorlar</a></li>
+                                 <li><a href="{% url 'profile' %}">Kategoriyalar</a></li>
+                                 <li><a href="{% url 'productpage' %}">Xaridorlar uchun tez-tez so‘raladigan savollar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>KOMPANIYA</h2>
+                              <ul>
+                                 <li><a href="{% url 'about_us' %}">Chamb haqida</a></li>
+                                 <li><a href="{% url 'cooming_soon' %}">Biz bilan bog‘laning</a></li>
+                                 <li><a href="{% url 'pricing' %}">Bosing</a></li>
+                                 <li><a href="{% url 'pricing' %}">Karyera</a></li>
+                                 <li><a href="{% url 'pricing' %}">Foydalanish shartlari</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-6">
+                        <div class="right-f-box">
+                           <h2>Sanoat</h2>
+                           <ul class="col-sm-4">
+                              <li><a href="#">To‘qimachilik</a></li>
+                              <li><a href="#">Mebel</a></li>
+                              <li><a href="#">Charm</a></li>
+                              <li><a href="#">Qishloq xo‘jaligi</a></li>
+                              <li><a href="#">Oziq-ovqat va ichimliklar</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8">
+                     <p><img width="90" src="{% static 'images/logo.png' %}" alt="#" style="margin-top: -5px;" /> Barcha huquqlar himoyalangan. Shirkat nomi © 2018</p>
+                  </div>
+                  <div class="col-md-4">
+                     <ul class="list-inline socials">
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/facebook.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/instagram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/telegram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/youtube.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!--main js--> 
+      <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script> 
+      <!--bootstrap js--> 
+      <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+      <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+      <script src="{% static 'js/slick.min.js' %}"></script> 
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!--custom js--> 
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>

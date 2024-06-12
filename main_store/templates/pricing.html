@@ -1,0 +1,511 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Online Store</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <meta content="Free HTML Templates" name="keywords">
+      <meta content="Free HTML Templates" name="description">
+      
+      <link href="{% static 'css/animate-wow.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+      <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+      <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+      <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+   </head>
+   <body>
+      <header id="header" class="top-head">
+         <!-- Static navbar -->
+         <nav class="navbar navbar-default">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-4 col-sm-12 left-rs">
+                     <div class="navbar-header">
+                        <button type="button" id="top-menu" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"> 
+                        <span class="sr-only">Navigatsiyani yoqish/yopish</span> 
+                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span> 
+                        <span class="icon-bar"></span> 
+                        </button>
+                        <a href="/" class="navbar-brand"><img src="{% static 'images/logo.png' %}" alt="" /></a>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-12">
+                     <div class="right-nav">
+                        <div class="help-r hidden-xs">
+                           <div class="help-box">
+                              <ul>
+                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>O'zgartirish</span> <img src="{% static 'images/uzbekistan_32px.ico' %}" alt="" / > </a> </li>
+                                 <li> <a href="{% url 'help' %}"><img class="h-i" src="{% static 'images/help-icon.png' %}" alt="" /> Yordam </a> </li>
+                              </ul>
+                           </div>
+                        </div>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--/.container-fluid --> 
+         </nav>
+      </header>
+      <!-- Modal -->
+      <div class="modal fade lug" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">O'zgartirish</h4>
+               </div>
+               <div class="modal-body">
+                  <ul>
+                     <li><a href="#"><img src="{% static 'images/rus.ico' %}" alt="" />Русский</a></li>
+                     <li><a href="#"><img src="{% static 'images/uzb.ico' %}" alt="" /> Uzbek </a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="sidebar" class="top-nav">
+         <ul id="sidebar-nav" class="sidebar-nav">
+            <li><a href="{% url 'help' %}">Yordam</a></li>
+            <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi</a></li>
+            <li><a href="#">Biznes uchun chamb</a></li>
+         </ul>
+      </div>
+      <div class="page-template-pricing">
+         <div class="section-pricing">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-12 text-center">
+                     <h2>Chambda narxlar</h2>
+                     <p class="lead">Chamb o'rnatilgan global kompaniyalar tarmog'iga maqsadli tarqatishni oling. <br>
+                        Siz uchun to'g'risini tanlang.
+                     </p>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="pricing-container wow fadeIn" data-wow-delay="0.2s">
+                     <div class="pricing-switcher">
+                        <p class="fieldset">
+                           <input type="radio" name="duration-1" value="monthly" id="monthly-1" checked>
+                           <label for="monthly-1">Oylik</label>
+                           <input type="radio" name="duration-1" value="yearly" id="yearly-1">
+                           <label for="yearly-1">Yillik</label>
+                           <span class="switch"></span>
+                        </p>
+                     </div>
+                     <ul class="pricing-list bounce-invert">
+                        <li>
+                           <ul class="pricing-wrapper">
+                              <li data-type="oylik" class="is-visible">
+                                 <header class="pricing-header">
+                                    <h2>Chamb Free</h2>
+                                    <p>Bog'lash yo'q</p>
+                                 </header>
+                                 <div class="pricing-body">
+                                    <ul class="pricing-features">
+                                       <li>Logo va brending</li>
+                                       <li>Cheksiz mahsulotlar</li>
+                                       <li>Tahlil</li>
+                                    </ul>
+                                    <div class="plan_price">Bepul</div>
+                                    <a class="select" href="#">Ro‘yxatdan o‘tish</a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <ul class="pricing-wrapper">
+                              <li data-type="oylik" class="is-visible">
+                                 <header class="pricing-header">
+                                    <h2>Chamb Pro</h2>
+                                    <p>Bog'lash yo'q</p>
+                                 </header>
+                                 <div class="pricing-body">
+                                    <ul class="pricing-features">
+                                       <li>Logo va brending</li>
+                                       <li>Mahsulotlar soni cheklanmagan</li>
+                                       <li>Yaxshiroq qidiruv</li>
+                                       <li>Tahlil</li>
+                                       <li>Google AdWords - 10%</li>
+                                       <li>Uchinchi tomon tomonidan tasdiqlangan</li>
+                                       <li>Yordam</li>
+                                    </ul>
+                                    <div class="plan_price">3,488 <span class="small">trl. boshiga. m.</span></div>
+                                    <a class="select" href="#">Ro‘yxatdan o‘tish</a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="exclusive">
+                           <ul class="pricing-wrapper">
+                              <li data-type="oylik" class="is-visible">
+                                 <div class="popular">ENG MASHXUR</div>
+                                 <header class="pricing-header">
+                                    <h2>Chamb o'sishi</h2>
+                                    <p>Bog'lash yo'q</p>
+                                 </header>
+                                 <div class="pricing-body">
+                                    <ul class="pricing-features">
+                                       <li>Qo'shimcha bilan Chamb Pro sifatida:</li>
+                                       <li>Google adwords 30 %</li>
+                                       <li>Homiy havolalar</li>
+                                    </ul>
+                                    <div class="plan_price">9,888 <span class="small">trl. boshiga. m.</span></div>
+                                    <a class="select" href="#">Ro‘yxatdan o‘tish</a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </li>
+                        <li>
+                           <ul class="pricing-wrapper">
+                              <li data-type="oylik" class="is-visible">
+                                 <header class="pricing-header">
+                                    <h2>Maxsus yechim</h2>
+                                    <p>Bog'lash yo'q</p>
+                                 </header>
+                                 <div class="pricing-body">
+                                    <ul class="pricing-features">
+                                       <li>Sizda alohida ehtiyoj bormi?</li>
+                                       <li>Bizga xabar yuboring va </li>
+                                       <li>siz bilan bog'lanamiz</li>
+                                       <li>2-3 ish kuni.</li>
+                                    </ul>
+                                    <div class="plan_price">Maxsus <span class="small">har bir. m.</span></div>
+                                    <a class="select" href="#">Kontaktni oling</a>
+                                 </div>
+                              </li>
+                           </ul>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               <div class="row pricing-f">
+                  <div class="col-md-12">
+                     <h2>Bizning xususiyatlarimiz</h2>
+                  </div>
+               </div>
+               <div class="row pricing-f-b">
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_1.png' %}" alt="">
+                        </div>
+                        <h3>Logotip &amp; brending</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.4s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_2.png' %}" alt="">
+                        </div>
+                        <h3>Chambdagi mahsulotlar</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.6s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_3.png' %}" alt="">
+                        </div>
+                        <h3>Qidiruv</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_4.png' %}" alt="">
+                        </div>
+                        <h3>Tahlil</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.4s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_5.png' %}" alt="">
+                        </div>
+                        <h3>Google Adwords</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.6s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_6.png' %}" alt="">
+                        </div>
+                        <h3>3. qism bilan tasdiqlangan</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_7.png' %}" alt="">
+                        </div>
+                        <h3>Til tarjimasi</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.4s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_8.png' %}" alt="">
+                        </div>
+                        <h3>Homiy havolalar</h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.6s">
+                     <div class="feature">
+                        <div class="feature_icon">
+                           <img src="{% static 'images/pricing_icon_9.png' %}" alt="">
+                        </div>
+                        <h3>Yordam </h3>
+                        <p class="feature_text">Shuning uchun donishmand bu masalalarda hamisha tanlovning ushbu tamoyiliga amal qiladi:
+                           u boshqa katta zavqlarni olish uchun zavqlarni rad etadi, aks holda u azoblarga chidaydi.
+                           yomonroq og'riqlardan qochish uchun.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="faq-box wow fadeIn" data-wow-delay="0.0s">
+         <div class="container">
+            <div class="row">
+               <div class="faq-main-box">
+                  <h2>Savollar va javoblar</h2>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-1">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq-a" aria-expanded="true" aria-controls="faq-a">
+                                    Chamb Free bilan nima qilishim mumkin?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-a" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-1">
+                              <div class="panel-body">Biz kamonda yashaymiz. Vivamus nibh leo, oson hayot multfilmi, hech qanday tarzda muallif. Ba'zi futbol endi hayotdagi eng muhim narsa, lekin mening muallifim. Ertaga kasalxonaning maleuada dui vestibulumidan muhimroq bo'ladi.</div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-2">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq-b" aria-expanded="false" aria-controls="faq-b">
+                                 Qanday qilib yangilashim mumkin?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-b" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-2">
+                              <div class="panel-body">Biz kamonda yashaymiz. Vivamus nibh leo, oson hayot multfilmi, hech qanday tarzda muallif. Ba'zi futbol endi hayotdagi eng muhim narsa, lekin mening muallifim. Ertaga kasalxonaning maleuada dui vestibulumidan muhimroq bo'ladi.</div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-3">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq-c" aria-expanded="false" aria-controls="faq-c">
+                                    Mendan qachon to‘lov olinadi?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-c" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-3">
+                              <div class="panel-body">Biz kamonda yashaymiz. Vivamus nibh leo, oson hayot multfilmi, hech qanday tarzda muallif. Ba'zi futbol endi hayotdagi eng muhim narsa, lekin mening muallifim. Ertaga kasalxonaning maleuada dui vestibulumidan muhimroq bo'ladi.</div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-4">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#faq-d" aria-expanded="false" aria-controls="faq-d">
+                                    Rejamni qanday bekor qilishim mumkin?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-d" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-4">
+                              <div class="panel-body">Biz kamonda yashaymiz. Vivamus nibh leo, oson hayot multfilmi, hech qanday tarzda muallif. Ba'zi futbol endi hayotdagi eng muhim narsa, lekin mening muallifim. Ertaga kasalxonaning maleuada dui vestibulumidan muhimroq bo'ladi.</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     <div class="panel-group" id="accordion-a" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-right-1">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion-a" href="#faq-right-a" aria-expanded="true" aria-controls="faq-right-a">
+                                    Hisob qaydnomamni yaratishda yordam olsam bo'ladimi?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-right-a" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-right-1">
+                              <div class="panel-body">Siz Chambda sotilayotgan barcha mahsulotlarni ko'rishingiz va barcha sotuvchilar bilan bog'lanishingiz mumkin.</div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-right-2">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion-a" href="#faq-right-b" aria-expanded="false" aria-controls="faq-right-b">
+                                    Men faqat Chambni sinab ko'rmoqchi bo'lsam-chi?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-right-b" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-right-2">
+                              <div class="panel-body">Shunchaki hisobingiz parametrlariga o‘ting, “Mening obunalarim” yorlig‘ini bosing, “obunamni yangilash” tugmasini bosing, so‘ng Chamb tajribangizni oshirish uchun ekrandagi ko‘rsatmalarga amal qiling.</div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-right-3">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion-a" href="#faq-right-c" aria-expanded="false" aria-controls="faq-right- c">
+                                 Agar menga maxsus yechim kerak bo'lsa nima bo'ladi?
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-right-c" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-right-3">
+                              <div class="panel-body">Hisob qaydnomasini yaratishda bizning “yo‘l-yo‘riqli sayohat” o‘quv tizimimiz hisob yaratish jarayonining barcha jihatlari bo‘yicha sizga yo‘l-yo‘riq ko‘rsatadi. Ismingizni to'ldirishdan tortib, birinchi mahsulotingizni joylashtirish yoki birinchi mahsulotingizni qidirishgacha; hech narsa tasodifga qolmaydi </div>
+                           </div>
+                        </div>
+                        <div class="panel panel-default">
+                           <div class="panel-heading" role="tab" id="heading-faq-right-4">
+                              <h4 class="panel-title">
+                                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion-a" href="#faq-right-d" aria-expanded="false" aria-controls="faq-right-d">
+                                    Yana savollarim bor..
+                                 </a>
+                              </h4>
+                           </div>
+                           <div id="faq-right-d" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-faq-right-4">
+                              <div class="panel-body">Xaridor yoki sotuvchi bo'lishingizdan qat'i nazar, barcha hisoblar bepul hisob uchun ro'yxatdan o'tishlari mumkin. Bu erda siz Chamb biznesingizni rivojlantirishga yordam berish uchun to'g'ri joy ekanligini aniqlashingiz kerak.</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer>
+         <div class="main-footer">
+            <div class="container">
+               <div class="row">
+                  <div class="footer-link-box clearfix">
+                     <div class="col-md-6 col-sm-6">
+                        <div class="left-f-box">
+                           <div class="col-sm-4">
+                              <h2>SOTISH</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi yetkazib beruvchilar</a></li>
+                                 <li><a href="{% url 'pricing' %}">Narxlash</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Yetkazib beruvchilar uchun tez-tez so‘raladigan savollar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>XARID OLING</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi xaridorlar</a></li>
+                                 <li><a href="{% url 'profile' %}">Kategoriyalar</a></li>
+                                 <li><a href="{% url 'productpage' %}">Xaridorlar uchun tez-tez so‘raladigan savollar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>KOMPANIYA</h2>
+                              <ul>
+                                 <li><a href="{% url 'about_us' %}">Chamb haqida</a></li>
+                                 <li><a href="{% url 'cooming_soon' %}">Biz bilan bog‘laning</a></li>
+                                 <li><a href="{% url 'pricing' %}">Bosing</a></li>
+                                 <li><a href="{% url 'pricing' %}">Karyera</a></li>
+                                 <li><a href="{% url 'pricing' %}">Foydalanish shartlari</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-6">
+                        <div class="right-f-box">
+                           <h2>Sanoat</h2>
+                           <ul class="col-sm-4">
+                              <li><a href="#">To‘qimachilik</a></li>
+                              <li><a href="#">Mebel</a></li>
+                              <li><a href="#">Charm</a></li>
+                              <li><a href="#">Qishloq xo‘jaligi</a></li>
+                              <li><a href="#">Oziq-ovqat va ichimliklar</a></li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8">
+                     <p><img width="90" src="{% static 'images/logo.png' %}" alt="#" style="margin-top: -5px;" /> Barcha huquqlar himoyalangan. Shirkat nomi © 2018</p>
+                  </div>
+                  <div class="col-md-4">
+                     <ul class="list-inline socials">
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/facebook.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/instagram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/telegram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/youtube.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!--main js--> 
+      <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script> 
+      <!--bootstrap js--> 
+      <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+      <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+      <script src="{% static 'js/slick.min.js' %}"></script> 
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!--custom js--> 
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>

@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>Online Store</title>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
+      <link rel="icon" type="image/x-icon" href="{% static 'images/logo.png' %}">
+      <link href="{% static 'css/animate-wow.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap-select.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/jquery-ui.css' %}" rel="stylesheet">
+      <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+      <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+      <link href="{% static 'css/select2.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/slick.min.css' %}" rel="stylesheet">
+      <link href="{% static 'css/style.css' %}" rel="stylesheet">
+      
+   </head>
+   <body>
+      <header id="header" class="top-head">
+         <!-- Static navbar -->
+         <nav class="navbar navbar-default">
+            <div class="container-fluid">
+               <div class="row">
+                  <div class="col-md-4 col-sm-12 left-rs">
+                     <div class="navbar-header">
+                        <a href="/" class="navbar-brand"><img src="{% static 'images/logo.png' %}" alt="" /></a>
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-sm-12">
+                     <div class="right-nav">
+                        <div class="login-sr">
+                           <div class="login-signup">
+                              {% if ok %}
+                                 <ul>
+                                    <li><a href="/">{{ ok }}</a></li>
+                                    <li><a class="custom-b" href="/logout">Chiqish</a></li>
+                                    <li><a class="custom-b" href="{% url 'article_list' %}">Mahsulotni qo'shish</a></li>
+                                 </ul>
+                              {% else %}
+                                 <ul>
+                                    <li><a href="/login">Kirish</a></li>
+                                    <li><a class="custom-b" href="/register">Ro‘yxatdan o‘tish</a></li>
+                                 </ul>
+                              {% endif %}
+                           </div>
+                        </div>
+                        <div class="help-r hidden-xs">
+                           <div class="help-box">
+                              <ul>
+                                 <li> <a data-toggle="modal" data-target="#myModal" href="#"> <span>O'zgartirish</span> <img src="{% static 'images/uzbekistan_32px.ico' %}" alt="" / > </a> </li>
+                                 <li> <a href="{% url 'help' %}"><img class="h-i" src="{% static 'images/help-icon.png' %}" alt="" /> Yordam </a> </li>
+                              </ul>
+                           </div>
+                        </div>   
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!--/.container-fluid --> 
+         </nav>
+      </header>
+      
+      <!-- Modal -->
+      <div class="modal fade lug" id="myModal" role="dialog">
+         <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">O'zgartirish</h4>
+               </div>
+               <div class="modal-body">
+                  <ul>
+                     <li><a href="#"><img src="{% static 'images/rus.ico' %}" alt="" />Русский</a></li>
+                     <li><a href="#"><img src="{% static 'images/uzb.ico' %}" alt="" /> Uzbek </a></li>
+                  </ul>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div id="sidebar" class="top-nav">
+         <ul id="sidebar-nav" class="sidebar-nav">
+            <li><a href="{% url 'help' %}">Yordam</a></li>
+            <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi</a></li>
+            <li><a href="#">Biznes uchun chamb</a></li>
+         </ul>
+      </div>
+      <div class="page-content-product">
+         <div class="main-product">
+            <div class="container">
+               <div class="row clearfix">
+                  <div class="find-box">
+                     <h1>Keyingi mahsulot yoki<br>biznes hamkoringizni shu yerda toping.</h1>
+                  </div>
+               </div>
+               <div class="row clearfix">
+                  {% if product_min %}
+                     {% for prod in product_min %}
+                        <div class="col-lg-3 col-sm-6 col-md-3">
+                           <a href="{% url 'productpage' %}">
+                              <div class="box-img">
+                                 <h4>{{ prod.product_name }}</h4>
+                                 <img src="{{ prod.image.url }}" alt="" />
+                              </div>
+                           </a>
+                        </div>
+                     {% endfor %}
+                  {% endif %}
+                  <div class="categories_link">
+                     <a href="{% url 'profile' %}">Bu erda barcha toifalarni ko'rib chiqing</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="cat-main-box">
+         <div class="container">
+            <div class="row panel-row">
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.0s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/xpann-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Biznesingizni “Chamb” qiling</h4>
+                        <p>Bo'lak bilan osongina o'stiring. Bepul hisob yaratish.
+                           Biz biznesingizni osongina kengaytirishga yordam beramiz.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/create-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Yaratish va qo'shish</h4>
+                        <p>Bo'lak bilan osongina o'stiring. Bepul hisob yaratish.
+                           Biz biznesingizni osongina kengaytirishga yordam beramiz.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4 col-sm-6 wow fadeIn hidden-sm" data-wow-delay="0.4s">
+                  <div class="panel panel-default">
+                     <div class="panel-body">
+                        <img src="{% static 'images/get-icon.jpg' %}" class="icon-small" alt="">
+                        <h4>Ilhom oling</h4>
+                        <p>Bo'lak bilan osongina o'stiring. Bepul hisob yaratish.
+                           Biz biznesingizni osongina kengaytirishga yordam beramiz.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="products_exciting_box">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                  <div class="exciting_box f_pd">
+                     <img src="{% static 'images/exciting_img-01.jpg' %}" class="icon-small" alt="" />
+                     <h4><strong>Qiziqarli</strong> va ekzotik mahsulotlar bilan tanishing
+                        sizga moslashtirilgan.
+                     </h4>
+                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et doore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris..
+                     </p>
+                  </div>
+               </div>
+               <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                  <div class="exciting_box l_pd">
+                     <img src="{% static 'images/exciting_img-02.jpg' %}" class="icon-small" alt="" />
+                     <h4><strong>Mahsulotlaringiz ro'yxatini</strong> kameraga kiriting va ulanishlarni o'rnating.</h4>                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+                        quis nostrud exercitation ullamco laboris..
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="start-free-box">
+         <div class="container">
+            <div class="row">
+               <div class="container">
+                  <div class="main-start-box">
+                     <div class="free-box-a clearfix">
+                        <div class="col-md-6 col-sm-6">
+                           <div class="left-a-f">
+                              <h3>Mashq qilish va kengaytirish uchun yaratilgan platforma. Bepul boshlang.</h3>
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                           <div class="right-a-f">
+                              <p>Kelgusi yillar davomida Internet orqali biznes yo'l
+                                 asarlar agreat o'zgaradi - va chamb hisoblanadi
+                                 o'yinni buzuvchi.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="main-start-box">
+                  <div class="bg_img_left"><img src="{% static 'images/bg_img1.png' %}" alt="#" /></div>
+                  <div class="container">
+                     <div class="buyer-box clearfix">
+                        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.2s">
+                           <div class="left-buyer">   
+                              <img class="img-responsive" src="{% static 'images/creat_pro.png' %}" alt="#" />
+                           </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 wow fadeIn" data-wow-delay="0.4s">
+                           <div class="right-buyer">
+                              <h4>xaridor</h4>
+                              <h2>Zavodingizni quvvatlang<br>
+                                 <span>Yangi yetakchi kanal bilan</span>
+                              </h2>
+                              <p>Chiqishdan sotuv yoki daromad haqida hech qachon tashvishlanmang
+                                 kanallar. chamb bilan do'koningiz to'g'ridan-to'g'ri
+                                 sizni qiziqtirgan minglab odamlar bilan bog'langan
+                                 mahsulotlar.
+                              </p>
+                              <a href="{% url 'pricing' %}">Xaridor hisobini yarating</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="bg_img_right"><img src="{% static 'images/bg_img1.png' %}" alt="#" /></div>
+               <div class="main-start-box">
+                  <div class="container">
+                     <div class="supplier clearfix">
+                        <div class="col-md-5 col-sm-6">
+                           <div class="left-supplier">
+                              <h4>ta'minotchi</h4>
+                              <h2>Doʻkoningizni kengaytiring <br><span>Yangi savdo kanali bilan</span></h2>
+                              <p>Chiqishdan sotuv yoki daromad haqida hech qachon tashvishlanmang
+                                 kanallar. chamb bilan do'koningiz to'g'ridan-to'g'ri
+                                 sizni qiziqtirgan minglab odamlar bilan bog'langan
+                                 mahsulotlar.
+                              </p>
+                              .
+                              <a href="{% url 'pricing' %}">Yetkazib beruvchi hisobini yarating</a>
+                           </div>
+                        </div>
+                        <div class="col-md-7 col-sm-6">
+                           <div class="right-supplier">
+                              <img class="img-responsive" src="{% static 'images/supplier-pc-img.png' %}" alt="#" />
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="products">
+         <div class="main-products">
+            <h2>CHAMBDAGI MAHSULOTLAR</h2>
+            <div class="product-slidr">
+               <div class="slider">
+                  {% if product_max %}
+                     {% for prod_max in product_max %}
+                        <div>
+                           <div class="prod-box">
+                              <div class="prod-i">
+                                 <img src="{{ prod_max.image.url }}" alt="#" />
+                              </div>
+                              <div class="prod-dit clearfix">
+                                 <div class="dit-t clearfix">
+                                    <div class="left-ti">
+                                       <h4>{{ prod_max.product_name }}</h4>
+                                       <p><span>{{ prod_max.company }}</span> tomonidan <span>{{ prod_max.mahsulot }}</span></p> 
+                                    </div>
+                                    <a href="{% url 'profile' %}">{{ prod_max.price }}</a>
+                                    <!-- <a href="#"><i class="fa fa-star" aria-hidden="true"><img width="15" src="{% static 'images/icons.png' %}" alt="" style="margin-top: -5px;" /></i> Savatga </a> -->
+                                    <!-- <a href=""></a><img width="25" src="{% static 'images/icons.ico' %}" alt="#" style="margin-top: -5px;" /> -->
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     {% endfor %}
+                  {% endif %}
+               </div>
+            </div>
+         </div>
+      </div>
+      <footer>
+         <div class="main-footer">
+            <div class="container">
+               <div class="row">
+                  <div class="footer-link-box clearfix">
+                     <div class="col-md-6 col-sm-6">
+                        <div class="left-f-box">
+                           <div class="col-sm-4">
+                              <h2>SOTISH</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi yetkazib beruvchilar</a></li>
+                                 <li><a href="{% url 'pricing' %}">Narxi</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Yetkazib beruvchilar uchun tez-tez so‘raladigan savollar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>XARID OLING</h2>
+                              <ul>
+                                 <li><a href="{% url 'pricing' %}">Hisob yaratish</a></li>
+                                 <li><a href="{% url 'howitworks' %}">Bu qanday ishlaydi xaridorlar</a></li>
+                                 <li><a href="{% url 'profile' %}">Kategoriyalar</a></li>
+                              </ul>
+                           </div>
+                           <div class="col-sm-4">
+                              <h2>KOMPANIYA</h2>
+                              <ul>
+                                 <li><a href="{% url 'about_us' %}">Chamb haqida</a></li>
+                                 <li><a href="{% url 'cooming_soon' %}">Biz bilan bog‘laning</a></li>
+                                 <li><a href="{% url 'pricing' %}">Bosing</a></li>
+                                 <li><a href="{% url 'pricing' %}">Karyera</a></li>
+                                 <li><a href="{% url 'pricing' %}">Foydalanish shartlari</a></li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-sm-6">
+                        <div class="right-f-box">
+                           <h2>Sanoat</h2>
+                           <ul class="col-sm-4">
+                              <li><a href="#">To‘qimachilik</a></li>
+                              <li><a href="#">Mebel</a></li>
+                              <li><a href="#">Charm</a></li>
+                              <li><a href="#">Qishloq xo‘jaligi</a></li>
+                              <li><a href="#">Oziq-ovqat va ichimliklar</a></li>
+                           </ul> 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="copyright">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-8">
+                     <p><img width="90" src="{% static 'images/logo.png' %}" alt="#" style="margin-top: -5px;" /> Barcha huquqlar himoyalangan. Shirkat nomi © 2018</p>
+                  </div>
+                  <div class="col-md-4">
+                     <ul class="list-inline socials">
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/facebook.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/instagram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/telegram.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                        <li>
+                           <a href=""></a><img width="25" src="{% static 'images/youtube.ico' %}" alt="#" style="margin-top: -5px;" />
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!--main js--> 
+      <script src="{% static 'js/jquery-1.12.4.min.js' %}"></script> 
+      <!--bootstrap js--> 
+      <script src="{% static 'js/bootstrap.min.js' %}"></script> 
+      <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+      <script src="{% static 'js/slick.min.js' %}"></script> 
+      <script src="{% static 'js/wow.min.js' %}"></script>
+      <!--custom js--> 
+      <script src="{% static 'js/custom.js' %}"></script>
+   </body>
+</html>
