@@ -1,0 +1,623 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Профи — сервис поиска специалистов</title>
+    <meta name="next-head-count" content="7">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <link rel="icon" href="profiru-favicon-16x16.ico" type="image/x-icon" sizes="16x16">
+    <link rel="icon" href="profiru-favicon-32x32.ico" type="image/x-icon" sizes="32x32">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="{% static 'images/social-main.png' %}">
+    <meta property="og:title"
+        content="Выбирайте профи – более 2 300 000 специалистов для решения ваших задач.">
+    <meta property="og:url" content="//profi.ru">
+    <meta property="og:type" content="website">
+    <meta property="vk:image" content="https://profi.ru/static/img/social-main-vk.png">
+    <meta property="twitter:image" content="https://profi.ru/static/img/social-main-twitter.jpg">
+    <link rel="stylesheet" href="{% static 'css/a.css' %}" data-n-g="">
+    <link rel="stylesheet" href="{% static 'css/d2bea10a94d4f2cd.css' %}" data-n-g="">
+    <link rel="stylesheet" href="{% static 'css/8a4b0a137b62d925.css' %}" data-n-g="">
+    <link rel="stylesheet" href="{% static 'css/cb4e287b7b2b1dba.css' %}" data-n-p="">
+    <link rel="stylesheet" href="{% static 'css/d8368fccf0f7e378.css' %}">
+</head>
+
+<body>
+    <div id="__next" data-reactroot="">
+        <div class="desktop_wrapper__rbyMF desktop_withHeader__k8sVV desktop_withGeoConfirmation__UMXqd"
+            data-version="desktop">
+            <div>
+                <header class="headerDesktop_header__wWF0Q">
+                    <div class="ui_Kv-Kl">
+                        <div class="headerDesktop_bar__HgrBm">
+                            <div class="headerDesktop_col__8XtlB"><a href=".."
+                                    class="ui_1hi7c logo_link__UBCKm headerDesktop_logo__x2yF9"><img
+                                        src="{% static 'images/logo_red.9501ac31.svg' %}" width="80" class="image_image__ruTwj"
+                                        alt=""></a>
+                                        
+                            </div>
+                            <div class="headerDesktop_col__8XtlB">
+                                <div class="menu_wrapper__166VK headerDesktop_menu__og8h8">
+                                    {% if ok %}
+                                        <a class="btn btn-outline-secondary me-2" href="/add_jobs">Добавить работу</a>
+                                    {% else %}
+                                    {% endif %}
+
+                                    <div class="ui_Aqx86">
+                                        <div class="col-auto text-lg-end py-2 py-lg-0">
+                                            {% if ok %}
+                                            <h4>{{ ok }}</h4>
+                                            <a class="btn btn-outline-secondary me-2" href="/logout">Выход</a>
+                                            {% else %}
+                                            <a class="btn btn-outline-secondary me-2" href="/login">Вход</a>
+                                            <a class="btn btn-outline-secondary" href="/register">Регистрация</a>
+                                            {% endif %}
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <main class="desktop_content__z2A2j desktop_content_fit__6KX3j">
+                    <div class="desktop_search__r2Asg" data-shmid="search">
+                        <div class="ui_Kv-Kl">
+                            <h1 class="ui_2MYaG ui_2SXfw ui_RF7aD ui_9c6iR desktop_sageTitle__GVrRV">Дела исполняются</h1>
+                            <form autocomplete="off" class="desktop_search-form__cqgVf" method="post">
+                                <div class="sageSearch_desktop_wrapper__WIu8w">
+                                    <div class="sageSearch_desktop_wrapper-body__uLxhz">
+                                        <div role="combobox" aria-haspopup="listbox" aria-owns="react-autowhatever-1"
+                                            aria-expanded="false"
+                                            class="sageSearch_desktop_sage-search-container__mdF_d ui_1BR5O">
+                                            <div class="ui_Z643L ui_3dBxZ ui_1Pr0i">
+                                                <div class="ui_dQatb"><input type="text"
+                                                        class="ui_27dTD input-default input-default" id="profi-ui-4"
+                                                        value="" placeholder="Услуга или специалист" autocomplete="off"
+                                                        aria-autocomplete="list" aria-controls="react-autowhatever-1"
+                                                        data-shmid="sage-search"></div>
+                                            </div>
+                                        </div><button type="submit"
+                                            class="ui_2QW3c ui_2Abw3 ui__HiyL sageSearch_desktop_submit__JBV8q"
+                                            data-shmid="searchSubmitButton"><span class="ui_3vUWP">Найти</span></button>
+                                    </div>
+                                </div>
+                                <div class="sageSearch_desktop_info__WSR5H">
+                                    <div class="Links_hint-list__LwSQH">
+                                        <div class="Links_hint__Y3i6J" data-shmid="example-hint"></div>
+                                        {% if ok %}
+                                            {% if all_jobs %}
+                                                {% for job in all_jobs %}
+                                                    <div class="ui_3JrE_ ui_2-fLO" role="button" tabindex="0">
+                                                        <a href="{% url 'job' job.id %}" class="ui_1hi7c ui_24uQM ui_3j-OD Compilations_link__8YGlI">
+                                                            <span class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv">{{ job.name }}</span>
+                                                        </a>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="ui_3JrE_ ui_2-fLO" role="button" tabindex="0">
+                                                    <span class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv">Ни какой работы нет!</span>
+                                                </div>
+                                            {% endif %}
+                                        {% else %}
+                                            <div class="ui_3JrE_ ui_2-fLO" role="button" tabindex="0">
+                                                <span class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv">Если хотите видеть какие есть работы то зарестрируйтесь</span>
+                                            </div>
+                                        {% endif %}    
+                                        </div>
+                                    </div>     
+                                </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="Level_level__inqZm ui_Kv-Kl">
+                        <div class="Shift_block__jqrk1">
+                            <div class="Compilations_row__hYchY">
+                                <div class="Compilations_col__RElvK">
+                                    {% if image_job %}
+                                        {% for b in image_job %}
+                                            <h1>{{b.name}}</h1>
+                                            <a class="ui_1hi7c ui_24uQM ui_3j-OD Compilations_link__8YGlI"><span
+                                                style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                                style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                alt="" aria-hidden="true"
+                                                src="{{ b.image.url }}"></span><img
+                                                decoding="async" data-nimg="intrinsic"
+                                                class="Compilations_imageContainer__TveYC"/></noscript></span>
+                                                <div class="Shift_text__jN6Lp">
+                                                    <p class="ui_2MYaG ui_2SXfw ui_RF7aD ui_3j-OD Compilations_text__Smumx">
+                                                        {{i.name}}</p>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    {% endif %}
+                                    </div>
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="Level_level__inqZm ui_Kv-Kl">
+                        <div class="getAppLinkDesktop_app-link__AC4jH" data-shmid="getAppLink">
+                            <div class="ui_1q6sj">
+                                <div class="getAppLinkDesktop_interactive-col__wBM9H ui_1liXe ui_1Ybke">
+                                    <div class="Interactive_interactive__hosRb">
+                                        <div class="Interactive_frame__VxiMs"><span
+                                                style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                                    style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                        style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                        alt="" aria-hidden="true"
+                                                        src="{% static 'images/oddiy.jpg' %}"></span><img
+                                                    decoding="async" data-nimg="intrinsic"
+                                                    style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui_1liXe ui_2SJG6">
+                                    <div class="PhoneForm_root__yHk9v">
+                                        <div class="PhoneForm_header__P1DUQ">
+                                            <h2 class="ui_2MYaG ui_2SXfw ui_RF7aD ui_3PGJ5 PhoneForm_title__y0aqA">Все профи в&nbsp;одном приложении
+                                            </h2>
+                                            <p class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv">Установите по&nbsp;ссылке из СМС</p>
+                                        </div>
+                                        <form class="PhoneSendForm_phone-send-form__64QNr">
+                                            <div class="PhoneSendForm_main-block__vptsR">
+                                                <div class="PhoneSendForm_phone__XxZMX">
+                                                    <div class="ui_Z643L ui_3nXFW ui_1Pr0i PhoneSendForm_phone-done__Ew0gx">
+                                                        <div class="ui_dQatb">
+                                                            <div class="ui_2jU8E">
+                                                                <div class="ui_bUFe9">
+                                                                    <div class="ui_2x406 ui_2OMHN"></div>
+                                                                    <div class="ui_2gMND">+</div>
+                                                                </div>
+                                                            </div><input type="tel" class="ui_27dTD input-default input-default" id="profi-ui-5"
+                                                                placeholder="7 123 456 78-90" autocomplete="tel"
+                                                                data-shmid="get-app-link-phone-input" value="" inputmode="numeric">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="PhoneSendForm_button-wrapper__b0nmJ"><button type="submit"
+                                                        class="ui_2QW3c ui_2Abw3 ui__HiyL PhoneSendForm_button__Ij_xM"
+                                                        data-shmid="get-app-link-phone-button"><span class="ui_3vUWP">Получить
+                                                            ссылку</span></button></div>
+                                            </div>
+                                        </form>
+                                        <div class="PhoneForm_footer__MMXeT">
+                                            <div><a href="http://app.appsflyer.com/ru.profi.client/?pid=Profi&amp;c=google&amp;af_adset=%28organic%29&amp;af_ad=&amp;af_ad_type=organic&amp;af_keyword=&amp;af_sub1=8CBABAB928E25865A01D563302960953&amp;af_sub2=GA1.2.1153511032.1700323930&amp;af_sub3=&amp;af_sub4="
+                                                    class="ui_1hi7c AppLinks_link__iq0JE" data-shmid="get-app-link-google-play"><span
+                                                        style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                                            style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                                style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                                alt="" aria-hidden="true"
+                                                                src="{% static 'images/google.jpg' %}"></span><img
+                                                            decoding="async" data-nimg="intrinsic"
+                                                            style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%"></span></a><a
+                                                    href="https://app.appsflyer.com/id909017353/?pid=Profi&amp;c=google&amp;af_adset=%28organic%29&amp;af_ad=&amp;af_ad_type=organic&amp;af_keyword=&amp;af_sub1=8CBABAB928E25865A01D563302960953&amp;af_sub2=GA1.2.1153511032.1700323930&amp;af_sub3=&amp;af_sub4="
+                                                    class="ui_1hi7c AppLinks_link__iq0JE" data-shmid="get-app-link-app-store"><span
+                                                        style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                                            style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                                style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                                alt="" aria-hidden="true"
+                                                                src="{% static 'images/app_store.jpg' %}"></span><img
+                                                            decoding="async" data-nimg="intrinsic"
+                                                            style="position:absolute;top:0;left:0;bottom:0;right:0;box-sizing:border-box;padding:0;border:none;margin:auto;display:block;width:0;height:0;min-width:100%;max-width:100%;min-height:100%;max-height:100%"></span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Level_level__inqZm ui_Kv-Kl">
+                        <div class="">
+                            <h3 class="ui_2MYaG ui_2SXfw ui_RF7aD ui_3lNQq desktop_title__zVz6h">Как это работает</h3>
+                            <div class="Shift_block__jqrk1">
+                                <div class="desktop_items__Xrbkt">
+                                    <div class="desktop_item__SaCVI">
+                                        <div class="Item_frame___360C" style="background-color:#F1E2E4">
+                                            <div class="LeaveOrder_root__bPdoe">
+                                                <div class="AnimationOrchestration_layer__Fom5g AnimationOrchestration_layer-1__una_e"
+                                                    data-shmid="poped-element">
+                                                    <div class="Card_card__grptA">
+                                                        <p
+                                                            class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv Card_header__OfXDp">
+                                                            Где вам удобно <br>встретиться</p><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="Дистанционно"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">Дистанционно</span></label><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="У специалиста"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">У специалиста</span></label><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="У меня"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">У меня</span></label>
+                                                    </div>
+                                                </div>
+                                                <div class="AnimationOrchestration_layer__Fom5g AnimationOrchestration_layer-2__IJZuJ"
+                                                    data-shmid="poped-element">
+                                                    <div class="Card_card__grptA">
+                                                        <p
+                                                            class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv Card_header__OfXDp">
+                                                            Когда вам удобно <br>встретиться</p><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="Утром"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">Утром</span></label><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="Днем"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">Днем</span></label><label
+                                                            class="Card_choice__dW9_q ui_1hrVD"><input type="radio"
+                                                                class="ui_1khGI" name="Вечером"><span
+                                                                class="ui_3DQw_ ui_2coIT ui_2pGWh"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 10 10" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="5" cy="5" r="4.5" fill="currentColor">
+                                                                    </circle>
+                                                                </svg></span><span
+                                                                class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9 ui_iyxDj ui_1C7AH">Вечером</span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Shift_text__jN6Lp">
+                                            <p class="ui_2MYaG ui_2SXfw ui_RF7aD ui_3Y-uv Item_title__Lev22">Оставьте
+                                                заказ</p>
+                                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_3Y-uv Item_description__QcMPd">Мы
+                                                зададим все важные вопросы, чтобы вам было проще описать задачу.</p>
+                                        </div>
+                                    </div>
+                                    <div class="desktop_item__SaCVI">
+                                        <div class="Item_frame___360C" style="background-color:#F3E7D4">
+                                            <div class="WriteYou_root__AlwEx">
+                                                <div class="WriteYou_wrapper__h74NW">
+                                                    <div class="WriteYou_notification-item__07kYg">
+                                                        <div
+                                                            class="Notification_notification__xrxFS WriteYou_notification-item__07kYg">
+                                                            <div class="Avatar_avatar__9TF_x Avatar_write-to-you__BajAA"
+                                                                style="background-color:#A849EB"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 22 22"
+                                                                    xmlns="http://www.w3.org/2000/svg" color="white"
+                                                                    class=" ">
+                                                                    <path
+                                                                        d="M15.5 5.5C15.5 7.98528 13.4853 10 11 10C8.51473 10 6.50001 7.98528 6.50001 5.5C6.50001 3.01472 8.51473 1 11 1C13.4853 1 15.5 3.01472 15.5 5.5Z"
+                                                                        fill="currentColor"></path>
+                                                                    <path
+                                                                        d="M11 12C7.39145 12 4.22932 13.7202 2.47078 16.2992C0.915087 18.5807 3.23859 21 6.00001 21H16C18.7614 21 21.0849 18.5807 19.5292 16.2992C17.7707 13.7202 14.6086 12 11 12Z"
+                                                                        fill="currentColor"></path>
+                                                                </svg></div>
+                                                            <div class="Notification_info__FIALr">
+                                                                <div><span
+                                                                        class="ui_2MYaG ui_2SXfw ui_RF7aD ui_1hoX9 Notification_profi-name__ezBj_">Ирина</span><span
+                                                                        class="Notification_star-icon__zU1_x"><svg
+                                                                            width="1em" height="1em" viewBox="0 0 11 11"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M1.13991 5.70439L1.43342 5.23903L1.13991 5.70439L2.93167 6.8345L2.14637 8.80195C1.72342 9.8616 2.99443 10.785 3.87151 10.0553L5.5 8.7005L7.12849 10.0553C8.00557 10.785 9.27658 9.86159 8.85363 8.80195L8.06833 6.8345L9.86009 5.70439C10.8251 5.09573 10.3396 3.60155 9.20115 3.67636L7.08731 3.81525L6.5662 1.76196C6.28553 0.656082 4.71447 0.656085 4.4338 1.76196L3.91269 3.81525L1.79885 3.67636C0.660376 3.60155 0.174892 5.09573 1.13991 5.70439ZM5.56396 8.64729C5.56389 8.64734 5.56383 8.6474 5.56377 8.64745L5.56396 8.64729ZM5.43623 8.64745C5.43617 8.6474 5.43611 8.64734 5.43604 8.64729L5.43623 8.64745ZM8.03749 6.75723C8.03751 6.75729 8.03753 6.75735 8.03756 6.75741L8.03749 6.75723Z"
+                                                                                stroke="currentColor"
+                                                                                stroke-width="1.2"></path>
+                                                                        </svg></span><span
+                                                                        class="ui_2MYaG ui_1pcoM ui_RF7aD ui_1hoX9 Notification_rating___Oj_v">5,0</span>
+                                                                    <p
+                                                                        class="ui_2MYaG ui_1pcoM ui_3nAGW ui_237c5 Notification_message__0kFk2">
+                                                                        Добрый день! Готова помочь</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="WriteYou_notification-item__07kYg">
+                                                        <div
+                                                            class="Notification_notification__xrxFS WriteYou_notification-item__07kYg">
+                                                            <div class="Avatar_avatar__9TF_x Avatar_write-to-you__BajAA"
+                                                                style="background-color:#FFA216"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 22 22"
+                                                                    xmlns="http://www.w3.org/2000/svg" color="white"
+                                                                    class=" ">
+                                                                    <path
+                                                                        d="M15.5 5.5C15.5 7.98528 13.4853 10 11 10C8.51473 10 6.50001 7.98528 6.50001 5.5C6.50001 3.01472 8.51473 1 11 1C13.4853 1 15.5 3.01472 15.5 5.5Z"
+                                                                        fill="currentColor"></path>
+                                                                    <path
+                                                                        d="M11 12C7.39145 12 4.22932 13.7202 2.47078 16.2992C0.915087 18.5807 3.23859 21 6.00001 21H16C18.7614 21 21.0849 18.5807 19.5292 16.2992C17.7707 13.7202 14.6086 12 11 12Z"
+                                                                        fill="currentColor"></path>
+                                                                </svg></div>
+                                                            <div class="Notification_info__FIALr">
+                                                                <div><span
+                                                                        class="ui_2MYaG ui_2SXfw ui_RF7aD ui_1hoX9 Notification_profi-name__ezBj_">Василий</span><span
+                                                                        class="Notification_star-icon__zU1_x"><svg
+                                                                            width="1em" height="1em" viewBox="0 0 11 11"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M1.13991 5.70439L1.43342 5.23903L1.13991 5.70439L2.93167 6.8345L2.14637 8.80195C1.72342 9.8616 2.99443 10.785 3.87151 10.0553L5.5 8.7005L7.12849 10.0553C8.00557 10.785 9.27658 9.86159 8.85363 8.80195L8.06833 6.8345L9.86009 5.70439C10.8251 5.09573 10.3396 3.60155 9.20115 3.67636L7.08731 3.81525L6.5662 1.76196C6.28553 0.656082 4.71447 0.656085 4.4338 1.76196L3.91269 3.81525L1.79885 3.67636C0.660376 3.60155 0.174892 5.09573 1.13991 5.70439ZM5.56396 8.64729C5.56389 8.64734 5.56383 8.6474 5.56377 8.64745L5.56396 8.64729ZM5.43623 8.64745C5.43617 8.6474 5.43611 8.64734 5.43604 8.64729L5.43623 8.64745ZM8.03749 6.75723C8.03751 6.75729 8.03753 6.75735 8.03756 6.75741L8.03749 6.75723Z"
+                                                                                stroke="currentColor"
+                                                                                stroke-width="1.2"></path>
+                                                                        </svg></span><span
+                                                                        class="ui_2MYaG ui_1pcoM ui_RF7aD ui_1hoX9 Notification_rating___Oj_v">4,8</span>
+                                                                    <p
+                                                                        class="ui_2MYaG ui_1pcoM ui_3nAGW ui_237c5 Notification_message__0kFk2">
+                                                                        Здравствуйте! Живу недалеко</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="WriteYou_notification-item__07kYg">
+                                                        <div
+                                                            class="Notification_notification__xrxFS WriteYou_notification-item__07kYg">
+                                                            <div class="Avatar_avatar__9TF_x Avatar_write-to-you__BajAA"
+                                                                style="background-color:#EC7586"><svg width="1em"
+                                                                    height="1em" viewBox="0 0 22 22"
+                                                                    xmlns="http://www.w3.org/2000/svg" color="white"
+                                                                    class=" ">
+                                                                    <path
+                                                                        d="M15.5 5.5C15.5 7.98528 13.4853 10 11 10C8.51473 10 6.50001 7.98528 6.50001 5.5C6.50001 3.01472 8.51473 1 11 1C13.4853 1 15.5 3.01472 15.5 5.5Z"
+                                                                        fill="currentColor"></path>
+                                                                    <path
+                                                                        d="M11 12C7.39145 12 4.22932 13.7202 2.47078 16.2992C0.915087 18.5807 3.23859 21 6.00001 21H16C18.7614 21 21.0849 18.5807 19.5292 16.2992C17.7707 13.7202 14.6086 12 11 12Z"
+                                                                        fill="currentColor"></path>
+                                                                </svg></div>
+                                                            <div class="Notification_info__FIALr">
+                                                                <div><span
+                                                                        class="ui_2MYaG ui_2SXfw ui_RF7aD ui_1hoX9 Notification_profi-name__ezBj_">Наиль</span><span
+                                                                        class="Notification_star-icon__zU1_x"><svg
+                                                                            width="1em" height="1em" viewBox="0 0 11 11"
+                                                                            fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <path
+                                                                                d="M1.13991 5.70439L1.43342 5.23903L1.13991 5.70439L2.93167 6.8345L2.14637 8.80195C1.72342 9.8616 2.99443 10.785 3.87151 10.0553L5.5 8.7005L7.12849 10.0553C8.00557 10.785 9.27658 9.86159 8.85363 8.80195L8.06833 6.8345L9.86009 5.70439C10.8251 5.09573 10.3396 3.60155 9.20115 3.67636L7.08731 3.81525L6.5662 1.76196C6.28553 0.656082 4.71447 0.656085 4.4338 1.76196L3.91269 3.81525L1.79885 3.67636C0.660376 3.60155 0.174892 5.09573 1.13991 5.70439ZM5.56396 8.64729C5.56389 8.64734 5.56383 8.6474 5.56377 8.64745L5.56396 8.64729ZM5.43623 8.64745C5.43617 8.6474 5.43611 8.64734 5.43604 8.64729L5.43623 8.64745ZM8.03749 6.75723C8.03751 6.75729 8.03753 6.75735 8.03756 6.75741L8.03749 6.75723Z"
+                                                                                stroke="currentColor"
+                                                                                stroke-width="1.2"></path>
+                                                                        </svg></span><span
+                                                                        class="ui_2MYaG ui_1pcoM ui_RF7aD ui_1hoX9 Notification_rating___Oj_v">4,9</span>
+                                                                    <p
+                                                                        class="ui_2MYaG ui_1pcoM ui_3nAGW ui_237c5 Notification_message__0kFk2">
+                                                                        Здравствуйте! Когда нужна услуга</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="Shift_text__jN6Lp">
+                                            <p class="ui_2MYaG ui_2SXfw ui_RF7aD ui_3Y-uv Item_title__Lev22">Специалисты
+                                                напишут сами</p>
+                                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_3Y-uv Item_description__QcMPd">
+                                                Покажем заказ подходящим профи. Они напишут, если готовы помочь.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="desktop_item__SaCVI">
+                                        <div class="Item_frame___360C" style="background-color:#EADFF1">
+                                            <div class="Suitable_root__jzMiN">
+                                                <div class="Suitable_header__5_vOQ">
+                                                    <div class="Avatar_avatar__9TF_x Avatar_suitable__F5t4V"
+                                                        style="background-color:#FFA216"><svg width="1em" height="1em"
+                                                            viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg"
+                                                            color="white" class=" ">
+                                                            <path
+                                                                d="M15.5 5.5C15.5 7.98528 13.4853 10 11 10C8.51473 10 6.50001 7.98528 6.50001 5.5C6.50001 3.01472 8.51473 1 11 1C13.4853 1 15.5 3.01472 15.5 5.5Z"
+                                                                fill="currentColor"></path>
+                                                            <path
+                                                                d="M11 12C7.39145 12 4.22932 13.7202 2.47078 16.2992C0.915087 18.5807 3.23859 21 6.00001 21H16C18.7614 21 21.0849 18.5807 19.5292 16.2992C17.7707 13.7202 14.6086 12 11 12Z"
+                                                                fill="currentColor"></path>
+                                                        </svg></div>
+                                                    <div>
+                                                        <p class="ui_2MYaG ui_2SXfw ui_3nAGW ui_1hoX9">Василий</p><span
+                                                            class="ui_2MYaG ui_1pcoM ui_3nAGW ui_237c5"><span
+                                                                class="SimpleProfileIndicators_rating__ky43P SimpleProfileIndicators_rating_size-s__05QeB"><span
+                                                                    class="ui_2MYaG ui_2nG75 ui_3nAGW ui_237c5"><svg
+                                                                        width="1em" height="1em" viewBox="0 0 11 11"
+                                                                        fill="none" xmlns="http://www.w3.org/2000/svg"
+                                                                        class="SimpleProfileIndicators_ratingIcon__vmPg_">
+                                                                        <path
+                                                                            d="M1.13991 5.70439L1.43342 5.23903L1.13991 5.70439L2.93167 6.8345L2.14637 8.80195C1.72342 9.8616 2.99443 10.785 3.87151 10.0553L5.5 8.7005L7.12849 10.0553C8.00557 10.785 9.27658 9.86159 8.85363 8.80195L8.06833 6.8345L9.86009 5.70439C10.8251 5.09573 10.3396 3.60155 9.20115 3.67636L7.08731 3.81525L6.5662 1.76196C6.28553 0.656082 4.71447 0.656085 4.4338 1.76196L3.91269 3.81525L1.79885 3.67636C0.660376 3.60155 0.174892 5.09573 1.13991 5.70439ZM5.56396 8.64729C5.56389 8.64734 5.56383 8.6474 5.56377 8.64745L5.56396 8.64729ZM5.43623 8.64745C5.43617 8.6474 5.43611 8.64734 5.43604 8.64729L5.43623 8.64745ZM8.03749 6.75723C8.03751 6.75729 8.03753 6.75735 8.03756 6.75741L8.03749 6.75723Z"
+                                                                            stroke="currentColor" stroke-width="1.2">
+                                                                        </path>
+                                                                    </svg></span>4,8<!-- --> </span>·
+                                                            <!-- -->57<!-- --><!-- -->отзывов<!-- --> </span>
+                                                    </div>
+                                                </div>
+                                                <div class="Suitable_messages__RzL28">
+                                                    <div>
+                                                        <div class="Suitable_message__J8iRd">
+                                                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_1hoX9">Все вместе
+                                                                2000 рублей</p>
+                                                        </div>
+                                                        <div class="Suitable_message__J8iRd">
+                                                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_1hoX9">Когда вам
+                                                                удобно?</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-5 pb-4">
+                        <section class="pb-3" id="experts">
+                            <div class="container-xl">
+                                <h2 class="display-6 fw-bold mb-5">Наши эксперты</h2>
+                            </div>
+                            <div class="position-relative">
+                                <div class="swiper container-xl pb-4">
+                                    <div class="swiper-slide text-center">
+                                        {% if imageall %}
+                                            {% for i in imageall %}
+                                            <img width="302" height="302" class="rounded-circle mb-4" alt=""
+                                            src="{{ i.image.url }}" loading="lazy">
+                                            <h1>{{i.name}}</h1>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev d-none d-md-flex" style="top: 151px;"></div>
+                            <div class="swiper-button-next d-none d-md-flex" style="top: 151px;"></div>
+                          </div>
+                        </section>
+                  
+                      </div>
+                </main>
+                <footer class="Footer_desktop_footer__nnvP9">
+                    <div class="ui_Kv-Kl">
+                        <div class="ui_1q6sj">
+                            <div class="ui_1liXe ui_31jh7"><a href="https://profi.ru/"
+                                    class="ui_1hi7c logo_link__UBCKm Footer_desktop_logo__xJKlI"><img
+                                        src="{% static 'images/logo_red.9501ac31.svg' %}" width="120" class="image_image__ruTwj"
+                                        alt=""></a></div>
+                            <div class="ui_1liXe ui_Xn2QY ui_1726q">
+                                <ul class="Footer_desktop_list__ywULY">
+                                    <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/order/seamless/?tabName=ORDER&seamless=1#slideId=102434"
+                                            class="ui_1hi7c ui_3Y-uv" data-shmid="footerNewOrder">Новый заказ</a></li>
+                                    <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/services/repetitor/"
+                                            class="ui_1hi7c ui_3Y-uv" data-shmid="footerAllServices">Все услуги</a></li>
+                                    <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/reviews/"
+                                            class="ui_1hi7c ui_3Y-uv" data-shmid="footerAllReviews">Все отзывы</a></li>
+                                    <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/completed-orders/autoinstructor/
+                                            class="ui_1hi7c ui_3Y-uv" data-shmid="footerAllReviews">История заказов</a></li>
+                                    <li class="Footer_desktop_marginBottom-15__FgGgI"><a
+                                            href="https://profi.ru/documents/legal/" class="ui_1hi7c ui_3Y-uv"
+                                            data-shmid="footerDocuments" target="_blank">Условия использования</a></li>
+                                    <li><a href="https://profi.ru/?site_version=mobile" class="ui_1hi7c ui_3Y-uv"
+                                            data-shmid="changeSiteVersion">Мобильная версия</a></li>
+                                </ul>
+                            </div>
+                            <div class="ui_1liXe ui_Xn2QY ui_6Bn9V">
+                                <div class="ui_1q6sj">
+                                    <div class="ui_1liXe ui_3YbMk ui_6Bn9V">
+                                        <ul class="Footer_desktop_list__ywULY">
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/registration/"
+                                                    class="ui_1hi7c ui_RF7aD ui_3Y-uv"
+                                                    data-shmid="footerRegistration">Работа для специалистов</a>
+                                            </li>
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a
+                                                    href="https://profi.ru/backoffice/?utm_source=profi.ru&utm_campaign=link_enter_backoffice_click&utm_medium=referral"
+                                                    class="ui_1hi7c ui_3Y-uv">Вход для специалистов</a></li>
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/partner/"
+                                                    class="ui_1hi7c ui_3Y-uv" data-shmid="footerPartner">Партнёрская
+                                                    программа</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="ui_1liXe ui_3YbMk ui_6Bn9V">
+                                        <ul class="Footer_desktop_list__ywULY">
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/about/"
+                                                    class="ui_1hi7c ui_3Y-uv" data-shmid="footerAbout">О компании</a>
+                                            </li>
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a
+                                                    href="https://profi.ru/vacancies/list/" class="ui_1hi7c ui_3Y-uv"
+                                                    data-shmid="footerVacancies">Вакансии</a></li>
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a
+                                                    href="https://profi.ru/vacancies/" class="ui_1hi7c ui_3Y-uv">Жизнь в
+                                                    Профи</a></li>
+                                            <li class="Footer_desktop_marginBottom-15__FgGgI"><a href="https://profi.ru/media"
+                                                    class="ui_1hi7c ui_3Y-uv">Блог</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui_1liXe ui_Xn2QY ui_1726q">
+                                <div class="Footer_desktop_marginBottom-15__FgGgI">
+                                    <p class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv SupportText_phoneText__F5ffb">Служба
+                                        поддержки: <br><a href="tel:+78003334545"
+                                            class="ui_1hi7c ui_RF7aD SupportText_link__JWp4Z">8 800 333-45-45</a></p>
+                                    <p class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv SupportText_workingHours__Chlig">
+                                        Будни: с 6 до 22 <br>Выходные: с 8 до 22</p>
+                                </div>
+                                <div class="SocialLinks_list__jkrUc Footer_desktop_socialLinks__hPjfp"><a
+                                        href="https://vk.com/profiru" class="SocialLinks_link__vs3ZR"
+                                        target="_blank"><svg width="1em" height="1em" viewBox="0 0 17 17" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1.19293 1.19293C0 2.38586 0 4.30585 0 8.14583V8.85417C0 12.6941 0 14.6142 1.19293 15.8071C2.38586 17 4.30585 17 8.14583 17H8.85417C12.6941 17 14.6142 17 15.8071 15.8071C17 14.6142 17 12.6941 17 8.85417V8.14583C17 4.30585 17 2.38586 15.8071 1.19293C14.6142 0 12.6941 0 8.85417 0H8.14583C4.30585 0 2.38586 0 1.19293 1.19293ZM3.3648 5.3125H4.60467C4.92154 5.3125 5.04076 5.45116 5.15958 5.79441C5.76598 7.56043 6.78843 9.10382 7.20875 9.10382C7.36636 9.10382 7.43868 9.03125 7.43868 8.63104V6.8056C7.41021 6.28599 7.22865 6.06128 7.09417 5.89484C7.01112 5.79205 6.94603 5.71149 6.94603 5.59743C6.94603 5.45877 7.06454 5.3125 7.26152 5.3125H9.2099C9.47266 5.3125 9.56414 5.45296 9.56414 5.76817V8.22393C9.56414 8.48654 9.67822 8.57848 9.75702 8.57848C9.91466 8.57848 10.046 8.48654 10.335 8.19765C11.2282 7.19957 11.8587 5.66305 11.8587 5.66305C11.9375 5.47924 12.0829 5.3125 12.3981 5.3125H13.638C14.013 5.3125 14.0918 5.50549 14.013 5.76817C13.8553 6.49042 12.3447 8.6179 12.3447 8.6179C12.2134 8.82799 12.1609 8.93307 12.3447 9.16945C12.4095 9.2601 12.5477 9.39542 12.7058 9.55026C12.8684 9.70949 13.052 9.88936 13.1986 10.0625C13.7312 10.6615 14.1325 11.1668 14.2443 11.5151C14.3465 11.8646 14.1694 12.0417 13.8151 12.0417H12.5753C12.2432 12.0417 12.076 11.8557 11.7146 11.4538C11.5615 11.2835 11.3734 11.0744 11.1231 10.8241C10.3875 10.115 10.0723 10.0231 9.88838 10.0231C9.63883 10.0231 9.56417 10.0938 9.56417 10.4479V11.5596C9.56417 11.8646 9.46667 12.0417 8.67854 12.0417C7.36497 12.0417 5.92146 11.2444 4.89689 9.77355C3.36004 7.61982 2.9397 5.9914 2.9397 5.66305C2.9397 5.47924 3.01055 5.3125 3.3648 5.3125Z"
+                                                fill="currentColor"></path>
+                                        </svg></a><a href="https://ok.ru/profiru" class="SocialLinks_link__vs3ZR"
+                                        target="_blank"><svg width="1em" height="1em" viewBox="0 0 25 25" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M1.75431 1.75431C0 3.50861 0 6.33213 0 11.9792V13.0208C0 18.6679 0 21.4914 1.75431 23.2457C3.50861 25 6.33213 25 11.9792 25H13.0208C18.6679 25 21.4914 25 23.2457 23.2457C25 21.4914 25 18.6679 25 13.0208V11.9792C25 6.33213 25 3.50861 23.2457 1.75431C21.4914 0 18.6679 0 13.0208 0H11.9792C6.33213 0 3.50861 0 1.75431 1.75431ZM7.68672 7.91804C7.68672 5.20192 9.87734 3 12.5797 3C15.282 3 17.4726 5.20192 17.4726 7.91804C17.4726 10.6342 15.282 12.8363 12.5797 12.8363C9.87734 12.8363 7.68672 10.6342 7.68672 7.91804ZM10.557 7.91811C10.557 9.04089 11.4626 9.95119 12.5797 9.95119C13.6967 9.95119 14.6023 9.04089 14.6023 7.91811C14.6023 6.79533 13.6967 5.8851 12.5797 5.8851C11.4626 5.8851 10.557 6.79533 10.557 7.91811ZM17.5019 15.3661C17.4398 15.4162 16.2659 16.3486 14.3071 16.7497L17.2639 19.6952C17.7838 20.217 17.7845 21.0637 17.2653 21.5863C16.7462 22.1089 15.904 22.1097 15.3839 21.5878L12.5133 18.778L9.90603 21.5697C9.64499 21.8419 9.29677 21.9787 8.94821 21.9787C8.61575 21.9787 8.28301 21.8544 8.02484 21.6042C7.4959 21.0915 7.48056 20.245 7.9906 19.7133L10.7971 16.7652C8.78338 16.3736 7.56109 15.4169 7.49814 15.3661C6.92494 14.9041 6.83287 14.0625 7.29256 13.4863C7.75217 12.9101 8.58942 12.8176 9.16275 13.2796C9.17487 13.2894 10.4533 14.2548 12.5132 14.2562C14.5732 14.2548 15.8251 13.2894 15.8372 13.2796C16.4106 12.8176 17.2478 12.9101 17.7074 13.4863C18.1671 14.0625 18.0751 14.9041 17.5019 15.3661Z"
+                                                fill="currentColor"></path>
+                                        </svg></a><a href="https://youtube.com/channel/UCeKF0V4h18p6szsjY2Irkzg"
+                                        class="SocialLinks_link__vs3ZR" target="_blank"><svg width="1.44em" height="1em"
+                                            viewBox="0 0 36 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M32.0855 0.764706C33.6275 1.17647 34.8433 2.38235 35.2585 3.91176C36.0295 6.70588 35.9998 12.5294 35.9998 12.5294C35.9998 12.5294 35.9998 18.3235 35.2585 21.1176C34.8433 22.6471 33.6275 23.8529 32.0855 24.2647C29.2684 25 17.9999 25 17.9999 25C17.9999 25 6.76109 25 3.91432 24.2353C2.37231 23.8235 1.1565 22.6176 0.741348 21.0882C0 18.3235 0 12.5 0 12.5C0 12.5 0 6.70588 0.741348 3.91176C1.1565 2.38235 2.40197 1.14706 3.91432 0.735294C6.73144 0 17.9999 0 17.9999 0C17.9999 0 29.2684 0 32.0855 0.764706ZM14.4118 7.14709L23.7824 12.5L14.4118 17.853V7.14709Z"
+                                                fill="currentColor"></path>
+                                        </svg></a></div>
+                            </div>
+                        </div>
+                        <div class="Footer_desktop_labels__myVB_">
+                            <div class="Footer_desktop_appLinks__xNc1K"><a
+                                    href="http://app.appsflyer.com/ru.profi.client/"
+                                    class="ui_1hi7c AppLinks_link__iq0JE" data-shmid="get-app-link-google-play"><span
+                                        style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                            style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                alt="" aria-hidden="true"
+                                                src="{% static 'images/google.jpg' %}"></a><a
+                                    href="https://app.appsflyer.com/id909017353/" class="ui_1hi7c AppLinks_link__iq0JE"
+                                    data-shmid="get-app-link-app-store"><span
+                                        style="box-sizing:border-box;display:inline-block;overflow:hidden;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;position:relative;max-width:100%"><span
+                                            style="box-sizing:border-box;display:block;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0;max-width:100%"><img
+                                                style="display:block;max-width:100%;width:initial;height:initial;background:none;opacity:1;border:0;margin:0;padding:0"
+                                                alt="" aria-hidden="true"
+                                                src="{% static 'images/app_store.jpg' %}"></a></div>
+                        </div>
+                        <div class="Footer_desktop_bottom__B_pcu">
+                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_1hoX9 Footer_desktop_disclaimer__UOFnD"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="35" height="36" fill="#a6a6a6"
+                                    viewBox="0 0 35 36" class="Footer_desktop_ageRatingIcon__Vf0Kz">
+                                    <path
+                                        d="M17.239 9.143c-5.154 0-5.328 2.478-5.328 9.247 0 5.269.592 7.677 5.328 7.677 4.98 0 5.328-2.652 5.328-8.549 0-5.862-.348-8.375-5.328-8.375zm2.542 10.259c0 2.722-.104 3.873-2.542 3.873s-2.542-1.117-2.542-3.804v-3.664c0-2.722.104-3.873 2.542-3.873s2.542 1.117 2.542 3.804v3.664zm7.488-17.867C26.224.523 24.935 0 23.368 0H11.632c-1.567 0-2.891.523-3.9 1.535L1.498 7.747C.522 8.724 0 10.015 0 11.446v11.969c0 1.64.557 2.931 1.672 4.013l5.92 5.932c1.149 1.152 2.473 1.71 4.144 1.675h11.597c1.602 0 2.925-.489 4.144-1.675l5.92-5.932c1.08-1.082 1.672-2.373 1.672-4.013V11.446c0-1.431-.522-2.722-1.498-3.699l-6.303-6.211zm5.433 13.993c0 .384-.174.593-.557.593h-1.776v-1.256c0-.942-.139-1.396-.94-1.396h-.801c-.801 0-.94.489-.94 1.396v1.256h-1.219c-.94 0-1.393.14-1.393.942v.837c0 .803.488.942 1.393.942h1.254V20.1c0 .942.139 1.396.94 1.396h.801c.801 0 .94-.488.94-1.396v-1.256h1.776c.348 0 .522.174.557.523v4.048c0 .977-.279 1.71-.975 2.373l-5.92 5.932c-.697.698-1.463 1.012-2.403 1.012H11.597c-.94 0-1.706-.314-2.403-1.012l-5.92-5.932c-.697-.698-1.01-1.396-.975-2.373v-11.69a3.42 3.42 0 0 1 1.045-2.547l5.99-6.107c.592-.593 1.393-.803 2.264-.803h11.806c.871 0 1.637.174 2.264.803l6.025 6.107c.697.733 1.045 1.57 1.045 2.547v3.804h-.035z">
+                                    </path>
+                                </svg>Информация, опубликованная на данном сайте, предназначена для любой
+                                аудитории, если иное не указано дополнительно в отношении отдельных
+                                материалов.</p>
+                            <div class="Footer_desktop_lastContainer__tIeor">
+                                <p class="ui_2MYaG ui_2SXfw ui_3nAGW ui_3Y-uv">© PROFI.RU, 2006–<!-- -->2023</p>
+                            </div>
+                            <p class="ui_2MYaG ui_1pcoM ui_3nAGW ui_1hoX9 Footer_desktop_itArea__D8EIt">ООО
+                                «ПРОФИ.РУ» осуществляет деятельность в области информационных
+                                технологий. Вид деятельности (код): 2.01.</p>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
