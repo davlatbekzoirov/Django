@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+<body>
+
+<center style="gap: 10px; 
+height: 652px ; 
+display: flex; 
+justify-content: center; 
+align-items: center;
+background-color: transparent;
+background-image: linear-gradient(90deg, #000000 0%, #001E1E 50%) 
+">
+
+
+    
+    {% if request.user.is_authenticated %}
+    <div  class="d-grid gap-2">
+      <a href="logout/" class="btn btn-success btn-lg">Tizimdan chiqish</a>
+      {%for category in categories%}
+      
+      <a href="test/{{category.id}}/" class="btn btn-primary btn-lg">{{category.title}}</a>
+    {%endfor%}
+      <a type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Natijangiz</a>
+    </div>
+      <div>
+        
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Sizning natijangiz</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+    
+    
+    
+    {% if yourtest %}
+      {% for x in yourtest %}
+    <h5 class="text-start"> {{x.category}} </h5>
+    <h5 class="text-start">
+        {{x.category.count_task}} savoldan {{x.natija}}tasiga javob topdingiz.
+        <br>
+        {% if x.checking == False %}O'ta olmadingiz{% else %} O'tdingiz{% endif %}
+    </h5>
+    <h5 class="text-start">{{x.date|timesince}} oldin</h5>
+    <br><br>
+    {% endfor %}
+    {% else %}
+    <h4>Siz test topshirmagansiz </h4>
+    {% endif %}
+      
+    
+        
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    {% else %}
+    <a href="login/" class="btn btn-primary">Ro'yhatdan otish</a>
+    {% endif %}
+   
+
+
+    
+
+
+</center>
+
+<script src="/static/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

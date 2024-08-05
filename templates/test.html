@@ -1,0 +1,237 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+
+
+
+{% if request.user.is_authenticated %}
+<style>
+    #forms{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        
+    }
+    #forms #btn{
+        width: 200px !important;
+    }
+</style>
+<body>
+    <center style="gap: 10px; 
+    height: 652px ; 
+    display: flex; 
+    justify-content:center;
+    align-items: center;
+    background-color: transparent;
+    background-image: linear-gradient(90deg, #000000 0%, #001E1E 50%) 
+    ">
+    <center>
+
+<nav class="navbar bg-success px-4" data-bs-theme="dark" style="gap: 10px; ">
+    <button id="modul" class="bg-primary fs-4 border border-0 rounded-pill text-white">1-Modul 1 Savol</button>
+    <div class="text-white bg-primary fs-5 px-3 rounded-pill"><span id="piont"></span>-Bal</div>
+    <div class="fs-5 text-white" id="timesshow">90 minut 60 sekund</div>
+
+</nav>
+<br>
+<section>
+
+<div id="savollar">
+    
+{% for t in task %}
+<div data-id="{{t.category}}" id="savol">  
+    
+<h3 class="text-white text-center mx-2 mb-4">{{t}}</h3>
+
+<div class="mx-2 d-flex justify-content-center align-items-center flex-wrap gap-2" style="gap:10px">
+
+    <button  style="opacity: 1 !important;min-width: 300px; display: flex; align-items: center; padding-right: 4px ; text-align: start;" data-tp="a" class="btn btn-primary btn-lg " onclick="alldiasbled(this,'{{t.togri_javob}}') ;if('{{t.togri_javob}}' == 'a'){piont=1 }else{piont=0};"> <div class=" rounded-pill btn py-0 px-2 text-black bg-white me-2">A</div>{{t.a}}</button>
+    <button  style="opacity: 1 !important;min-width: 300px; display: flex; align-items: center; padding-right: 4px ; text-align: start;" data-tp="b" class="btn btn-primary btn-lg" onclick="alldiasbled(this,'{{t.togri_javob}}') ;if('{{t.togri_javob}}' == 'b'){piont=1 }else{piont=0};"> <div class=" rounded-pill btn py-0 px-2 text-black bg-white me-2">B</div>{{t.b}}</button>
+    <button  style="opacity: 1 !important;min-width: 300px; display: flex; align-items: center; padding-right: 4px ; text-align: start;" data-tp="c" class="btn btn-primary btn-lg" onclick="alldiasbled(this,'{{t.togri_javob}}') ; if('{{t.togri_javob}}' == 'c'){piont=1 }else{piont=0};"> <div class=" rounded-pill btn py-0 px-2 text-black bg-white me-2">C</div>{{t.c}}</button>
+    <button  style="opacity: 1 !important;min-width: 300px; display: flex; align-items: center; padding-right: 4px ; text-align: start;" data-tp="d" class="btn btn-primary btn-lg" onclick="alldiasbled(this,'{{t.togri_javob}}') ;if('{{t.togri_javob}}' == 'd'){piont=1 }else{piont=0};"> <div class=" rounded-pill btn py-0 px-2 text-black bg-white me-2">D</div>{{t.d}}</button>
+
+</div>
+
+</div>
+{% endfor %}
+    
+
+    
+</div>
+
+<div class="mx-2 d-flex justify-content-center my-3">
+    <button onclick="this.setAttribute('style','display: none !important;')" id="nextques" class="btn btn-primary fs-5 d-none">Keyingi savol</button>
+</div>
+
+
+
+</section>
+
+
+
+
+<script>
+let vaqt = 90
+let h = 60
+let temes = setInterval(() => {
+    h-=1
+    if (h==0) {
+        h = 60
+        vaqt -= 1
+    }
+
+    
+document.getElementById('timesshow').innerHTML = `${vaqt} minut ${h} sekund`
+if(vaqt<=10){
+        document.getElementById('timesshow').classList.add("bg-danger")
+
+    }
+
+}, 1000);
+
+let point=0
+let noneiterator =0
+let savolid = 1
+let piont=0
+let s=0
+let boleanchek = 'False'
+let otdi_otmadi = 'Yomon'
+
+
+for (const iterator of document.getElementById('savollar').children ) {
+    iterator.style.display = 'none'
+}
+document.getElementById('modul').innerHTML = `${document.getElementById('savollar').children[noneiterator].getAttribute('data-id')} ${savolid}-savol`
+document.getElementById('savollar').children[noneiterator].style.display = 'block'
+
+document.getElementById('nextques').addEventListener("click",()=>{
+for (const iterator of document.getElementById('savollar').children ) {
+iterator.style.display = 'none'
+}
+
+if(document.getElementById('savollar').children.length <= savolid){
+    point+=piont
+    s+=1
+    if(point/s>0.5){
+        boleanchek = 'True'
+        otdi_otmadi = 'Yaxshi'
+    }else{
+        boleanchek = 'False'
+        otdi_otmadi = 'Yomon'
+    }
+document.getElementById('savollar').innerHTML = `
+<form id="forms" action="" method="POST" >
+    {% csrf_token %}
+    <input hidden value="${point}${s}" type="text" name="natija">
+    <input hidden  type="text"  value="${boleanchek}" name="checking">
+    
+    <div class="text-white text-center mx-2 mb-4" ><h5>Savollar soni: ${s}ta<h5>
+         <h5>Bal :  ${point}</h5>
+         <h5>Natija : ${otdi_otmadi}</h5>
+    </div>
+    <input id='btn' type="submit" class="btn btn-danger" value="Jonatish">
+</form>
+`
+clearInterval(temes)
+
+
+}
+else{
+    point+=piont
+    s+=1
+savolid+=1
+noneiterator+=1
+document.getElementById('savollar').children[noneiterator].style.display = 'block'
+document.getElementById('modul').innerHTML = `${document.getElementById('savollar').children[noneiterator].getAttribute('data-id')} ${savolid}-savol`
+console.log(document.getElementById('savollar').children[noneiterator].getAttribute('data-id'));
+if(document.getElementById('savollar').children.length < savolid+1 ){
+document.getElementById('nextques').innerHTML = `Natijani yuborish`
+document.getElementById('nextques').className = 'btn btn-danger'
+
+
+}else{
+
+}
+
+}
+
+})
+
+let g = setInterval(() => {
+    if(vaqt==0){
+        if(point/s>0.5){
+        boleanchek = 'True'
+        otdi_otmadi = 'Yaxshi'
+    }else{
+        boleanchek = 'False'
+        otdi_otmadi = 'Yomon'
+    }
+document.getElementById('savollar').innerHTML = `
+<form id="forms" action="" method="POST" >
+    {% csrf_token %}
+    <input hidden value="${point}" type="text" name="natija">
+    
+    <input hidden  type="text"  value="${boleanchek}" name="checking">
+    
+    <div>
+         <h5>Bal :  ${point}</h5>
+         <h5>Natija : ${otdi_otmadi}</h5>
+    </div>
+    <input id='btn' type="submit" class="btn btn-danger" value="Jonatish">
+</form>
+`
+clearInterval(temes)
+clearInterval(g)
+document.getElementById('timesshow').innerHTML = 'Vaqt tugadi'
+
+    }else{}
+
+}, 1000);
+
+
+function alldiasbled(f,j){
+    document.getElementById('nextques').setAttribute('style','display: flex !important;')
+
+    for (const iterator of f.parentElement.children) {
+        
+        if (iterator.getAttribute('data-tp') ==f.getAttribute('data-tp')) {
+            // iterator.setAttribute('class','btn btn-success')
+            iterator.setAttribute('class','btn btn-success btn-lg')
+        }else{
+            iterator.setAttribute('class','btn btn-primary btn-lg')
+        }
+    }
+
+
+}
+
+addEventListener("click",()=>{
+    document.getElementById('piont').innerHTML = point
+
+})
+
+document.getElementById('piont').innerHTML = point
+
+</script>
+
+
+
+<script src="/static/bootstrap.bundle.min.js"></script>
+</body>
+{% else %}
+<center class="my-5">
+    <h2>Iltimos test yechish uchun royhatdan oting</h2> <br>
+    <a href="" class="btn btn-danger">Ro'yhatdan o'ting</a>
+</center>
+{% endif %}
+
+
+</html>

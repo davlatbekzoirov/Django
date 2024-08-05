@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+
+  <center style="gap: 10px; 
+  padding-top:30px;
+  height: 652px ; 
+  background-color: transparent;
+  background-image: linear-gradient(90deg, #000000 0%, #001E1E 50%) 
+">
+
+
+  {% if request.user.is_superuser  %}
+
+<nav class="d-flex justify-content-start m-4 align-items-center">
+    <a href="/adminpage/" class="btn btn-primary">Admin page</a>
+    <h3 class=" text-white m-3">{{categ}} {{tasks|length}}-ta savol</h3>
+</nav>
+<ol style="flex-wrap: wrap ; display: flex; justify-content: center; align-items: center;">
+
+
+{% for t in tasks%}
+
+    <div class="w-100 btn btn-primary d-flex justify-content-between flex-wrap my-1 mx-1 text-start">
+        <li class="fs-1">- {{t}}</li>
+        <div class="d-flex align-items-center gap-2 ">
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal{{t.id}}" class="rounded-pill btn btn-light bg fa fa-eye"  > </a>
+            <a class="rounded-pill btn btn-light bg fa fa-edit" href="/updatetask/{{t.id}}"></a>
+            <a class="rounded-pill btn btn-danger  fa fa-trash" href="/taskdelete/{{t.id}}"></a>
+        </div>
+
+    </div>
+      <div class="modal fade" id="exampleModal{{t.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Savol malumotlari</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="fs-4">{{t}}</p>
+<h5 class="fw-normal"><span class="text-primary">A</span> : {{t.a}}</h5>
+<h5 class="fw-normal"><span class="text-primary">B</span> : {{t.b}}</h5>
+<h5 class="fw-normal"><span class="text-primary">C</span> : {{t.c}}</h5>
+<h5 class="fw-normal"><span class="text-primary">D</span> : {{t.d}}</h5>
+<h5 class="fw-normal text-success"><span class="text-success fa fa-check"></span> : {{t.togri_javob|title}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+{% endfor %}
+
+
+<center>
+   
+    <a data-bs-toggle="modal" data-bs-target="#qoshish" class="btn btn-success mt-3"  >Savol qoshish</a>
+    
+    
+    <div class="modal fade" id="qoshish" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Savol Qo'shish</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form  class="modal-body" method="POST">
+                {% csrf_token %}
+                <input required  class="form-control my-1" placeholder="Savol" type="text" name="title">
+                <input required  class="form-control my-1" placeholder="A variyant" type="text" name="a">
+                <input required  class="form-control my-1" placeholder="B variyant" type="text" name="b">
+                <input required  class="form-control my-1" placeholder="C variyant" type="text" name="c">
+                <input required  class="form-control my-1" placeholder="D variyant" type="text" name="d">
+                <div class="text-start mt-2">To'gri variyant</div>
+                <select class="form-select" name="togri_javob">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                    <option value="d">d</option>
+                </select>
+                <input type="submit" class="btn btn-primary mt-2 w-100" value="Jo'natish">
+
+           </form>
+
+          </div>
+        </div>
+    </div>
+
+</center>
+</ol>
+
+{% else %}
+<center class="fs-4 my-3">Siz admin panelga kira olmaysiz <a href="/" class="btn btn-primary">Home</a></center>
+
+{% endif %}
+
+<script src="/static/bootstrap.bundle.min.js"></script>
+<script>let num=0;</script>
+</body>
+</html>

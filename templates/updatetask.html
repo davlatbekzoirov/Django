@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+{% if request.user.is_superuser  %}
+
+<body>
+<style>
+    #fh > input,select {
+        width: 300px !important;
+
+    }
+</style>
+<center>
+
+
+
+<form  style="width: 300px;" class="d-flex flex-column align-items-start" action="" method="POST">
+    <a class="my-3 text-center btn btn-danger w-100" href="/adminpage/modul/{{object.category.id}}">{{object.category}} ga qaytish</a>
+    {% csrf_token %}
+<div id="fh" class="d-flex flex-column">
+    {% for f in form %}
+        <div class="text-start px-1 fs-6 d-inline-flex mt-2">{{f.label}} </div>
+        {{f}}
+    {% endfor %}
+    <button type="submit" class="btn btn-success mt-3">Saqlash</button>
+</div>
+</form>
+</center>
+<script>
+    
+    for (const iterator of document.getElementById('fh').children) {
+
+       if (iterator.tagName =='INPUT') {
+        iterator.setAttribute('class','form-control')
+       }
+       else if (iterator.tagName =='SELECT') {
+        iterator.setAttribute('class','form-select')
+       }
+    }
+</script>
+
+
+</body>
+{% else %}
+<center class="fs-4 my-3">Siz admin panelga kira olmaysiz <a href="/" class="btn btn-primary">Home</a></center>
+
+{% endif %}
+</html>

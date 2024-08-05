@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+{% if request.user.is_superuser  %}
+
+<body>
+
+    <center style="gap: 10px; 
+    padding-top:30px;
+    height: 652px ; 
+    background-color: transparent;
+    background-image: linear-gradient(90deg, #000000 0%, #001E1E 50%) 
+    ">
+
+<center class="d-flex justify-content-center align-items-center gap-2 my-3 flex-wrap">
+    <a class="btn btn-success btn-lg" href="/adminpage">Admin page</a>
+    <h3 class="text-white">Test topshirgan foydalanuvchilar</h3>
+
+
+</center>
+
+<center>
+    <div class="d-flex align-items-center gap-2 flex-wrap justify-content-center my-4">
+        <button onclick="checkall()" class="btn btn-primary fs-5">Barchasi</button>
+        <button   onclick="check('False')" class="btn btn-success fs-5">O'tganlar - {{true}}</button>
+        <button   onclick="check('True')"  class="btn btn-danger fs-5">O'ta olmaganlar - {{false}}</button>
+    </div>
+
+    <div id="blopg"  class="blog mx-3">
+    {% for t in topshirganlar %}
+    <div data-f="{{t.checking}}"  class="text-start w-100 btn btn-light my-1 d-flex flex-column "> 
+
+        <div class="fs-5">{{t|title}}
+            
+            {% if t.checking == False %}
+                <div class="fa fa-times text-danger fs-4"></div>
+            {% else %}
+            <div class="fa fa-check text-success fs-4"></div>
+            {% endif %}
+                
+        </div>
+      
+    <div class="mt-1 d-flex align-items-center flex-wrap gap-0">
+       <div class="fs-5">{{t.date|timesince}} oldin</div>
+    
+    </div>
+
+
+    </div>
+    {% endfor %}
+
+    </div>
+
+
+</center>
+
+
+
+<script>
+
+
+    function check(t) {
+    for (const iterator of document.getElementById('blopg').children ) {
+    if(iterator.getAttribute('data-f') == t){
+        iterator.setAttribute('style','display:none !important;')
+    }
+    else{
+        iterator.setAttribute('style','display:flex !important;')
+
+    }
+
+    }
+    }
+
+    function checkall() {
+    for (const iterator of document.getElementById('blopg').children ) {
+
+        iterator.setAttribute('style','display:flex !important;')
+
+    }
+    }
+
+</script>
+
+</body>
+{% else %}
+<center class="fs-4 my-3">Siz admin panelga kira olmaysiz <a href="/" class="btn btn-primary">Home</a></center>
+
+{% endif %}
+
+
+</html>

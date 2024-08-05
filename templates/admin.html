@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+</head>
+<body>
+
+    <center style="gap: 10px; 
+    height: 652px ; 
+    padding-top:30px;
+    background-color: transparent;
+    background-image: linear-gradient(90deg, #000000 0%, #001E1E 50%) 
+    ">
+
+    
+
+{% if request.user.is_superuser  %}
+   
+
+    
+
+<h3 class="text-white text-center mt-4">Admin panelga hush kelibsiz {{user}} <a href="/">Home</a></h3>
+<center >
+
+<div  class="flex-wrap d-flex align-items-center justify-content-center gap-3 mt-5">
+
+{% for c in category %}
+    <a href="modul/{{c.id}}/" style="width: 300px !important;" class="fs-4 btn btn-success py-3 px-4">{{c}}</a>
+{% endfor %}
+<a href="apply/" style="width: 300px !important;" class="fs-4 btn btn-primary py-3 px-4">Test topshirganlar</a>
+</div>
+</center>
+{% else %}
+<center class="fs-4 my-3">Siz admin panelga kira olmaysiz <a href="/" class="btn btn-primary">Home</a></center>
+{% endif %}
+
+
+<script src="/static/bootstrap.bundle.min.js"></script>
+</body>
+</html>
