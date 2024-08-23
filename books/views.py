@@ -1,10 +1,10 @@
 from .models import Book
 from .serializers import BookSerializer
-from rest_framework import generics
+from rest_framework import generics, viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 # class BookListAPIView(generics.ListCreateAPIView):
 #     queryset = Book.objects.all()
@@ -43,13 +43,61 @@ class BookDetalView(APIView):
                              'message': 'Book is not found'}, 
                              status=status.HTTP_404_NOT_FOUND)
 
-class BookDeleteView(generics.DestroyAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+# class BookDeleteView(generics.DestroyAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer
 
-class BookUpdateView(generics.UpdateAPIView):
-    queryset = Book.objects.all()
-    serializer_class = BookSerializer
+class BookDeleteView(APIView):
+    
+    def delete(self, request, pk):
+        try:
+            book = Book.objects.get(id = pk)
+            book.delete()
+
+            data = {
+                'status': True,
+                'book': 'Successfully deleted'
+            }
+
+            return Response(data, status=status.HTTP_200_OK)
+        except Exception:
+            return Response({
+                "status": False,
+                'message': 'Book is not found'
+            }, 
+                status=status.HTTP_404_NOT_FOUND)
+
+# class BookUpdateView(generics.UpdateAPIView):
+#     queryset = Book.objects.all()
+#     serializer_class = BookSerializer
+        
+class BookUpdateView(APIView):
+
+    def put(self, request, pk):
+        # try:
+        #     book = Book.objects.get(id=pk)
+        #     book.update()
+        #     return Response({
+        #         "status": True,
+        #         "message": "Successfully updated"
+        #     }, status=status.HTTP_200_OK)
+        # except Exception:
+        #     return Response({
+        #         "status": False,
+        #         "message": "Book is not found"
+        #     }, status=status.HTTP_404_NOT_FOUND)
+
+        book = get_object_or_404(Book.objects.all(), id=pk)
+        data = request.data
+        serializer = BookSerializer(instance=book, data=data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            book_saved = serializer.save()
+        return Response(
+            {
+            "status": True,
+            "message": f"Book {book_saved} updated successfully"
+            }
+        )
 
 # class BookCreateApiView(generics.CreateAPIView):
 #     queryset = Book.objects.all()
@@ -76,6 +124,11 @@ class BookListCreateApiView(generics.ListCreateAPIView):
     serializer_class = BookSerializer
 
 class BookDeleteUpdateView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
+class BookViewSet(viewsets.ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     
