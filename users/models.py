@@ -12,7 +12,6 @@ NEW, CODE_VERIFIED, DONE, PHOTO_STEP = ('new', 'code_verified', 'done', 'photo_s
 PHONE_EXPIRE = 2
 EMAIL_EXPAIR = 2
 
-# Create your models here.
 class User(AbstractUser, BaseModel):
     USER_ROLES = (
         (ORDINARY_USER, ORDINARY_USER),
