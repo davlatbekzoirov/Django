@@ -1,0 +1,19 @@
+<!-- create_meeting.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Create Meeting</title>
+	</head>
+	<body>
+		<h1>Create a New Meeting</h1>
+		<form method="POST">
+			{% csrf_token %}
+			<label for="title">Meeting Title:</label>
+			<input type="text" name="title" required />
+			<button type="submit">Create</button>
+		</form>
+		<br />
+		<a href="{% url 'meeting_list' %}">Back to Meeting List</a>
+	</body>
+</html>

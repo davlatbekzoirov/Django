@@ -1,0 +1,20 @@
+<!-- templates/webinars/webinar_detail.html -->
+<h1>{{ webinar.title }}</h1>
+<p>{{ webinar.description }}</p>
+<p>Date: {{ webinar.date }}</p>
+<p>Duration: {{ webinar.duration }}</p>
+
+{% if user.is_authenticated %}
+<form method="post" action="{% url 'register_for_webinar' webinar.pk %}">
+	{% csrf_token %}
+	<button type="submit">Register for Webinar</button>
+</form>
+<h2>Participants:</h2>
+<ul>
+	{% for participant in participants %}
+	<li>{{ participant.user.username }}</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>as</p>
+{% endif %}

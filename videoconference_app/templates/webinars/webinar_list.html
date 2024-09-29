@@ -1,0 +1,24 @@
+<!-- webinars/webinar_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Upcoming Webinars</title>
+	</head>
+	<body>
+		<h1>Upcoming Webinars</h1>
+		<ul>
+			{% for webinar in webinars %}
+			<li>
+				<a href="{% url 'meeting_detail' webinar.meeting_id %}"
+					>{{ webinar.title }}</a
+				>
+				- {{ webinar.created_at }}
+			</li>
+			{% empty %}
+			<li>No upcoming webinars.</li>
+			{% endfor %}
+		</ul>
+		<a href="{% url 'create_meeting' %}">Create a New Meeting</a>
+	</body>
+</html>

@@ -1,13 +1,9 @@
+# webinars/urls.py
 from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('register/',views.register, name='register'),
-    path('login/',views.login_view, name='login'),
-    path('dashboard/',views.dashboard, name='dashboard'),
-    path('meeting/',views.videocall, name='meeting'),
-    path('logout/',views.logout_view, name='logout'),
-    path('join/',views.join_room, name='join_room'),
-    path('',views.index, name='index'),
-
+    path('', views.webinar_list, name='meeting_list'),
+    path('create/', views.create_meeting, name='create_meeting'),
+    path('meeting/<str:meeting_id>/', views.meeting_detail, name='meeting_detail'),
 ]

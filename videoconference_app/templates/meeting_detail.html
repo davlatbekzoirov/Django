@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ meeting.title }}</title>
+</head>
+<body>
+    <h1>{{ meeting.title }}</h1>
+
+    <video id="localVideo" autoplay muted style="width: 40%"></video>
+    <div id="remoteVideos"></div> <!-- Foydalanuvchilarning videolari -->
+
+    <button onclick="startScreenShare()">Ekran Almashish</button>
+
+    <script>
+        const localVideo = document.getElementById('localVideo');
+        const remoteVideos = document.getElementById('remoteVideos');
+        const ws = new WebSocket(
+            `ws://${window.location.host}/ws/webinar/{{ meeting.meeting_id }}/`
+        );
+
+
+        const peerConnections = {}; // Barcha foydalanuvchilarning ulanishlarini saqlaydi
+        let localStream; // Local video oqimi
+
+        ws.onmessage = async (message) => {
+            const data = JSON.parse(message.data);
+            const peerId = data.peerId; // Kimdan xabar keldi (peerId)
+
+            if (!peerConnections[peerId]) {
+                createPeerConnection(peerId); // Yangi foydalanuvchi ulanishi
+            }
+
+            if (data.offer) {
+                await peerConnections[peerId].setRemoteDescription(
+                    new RTCSessionDescription(data.offer)
+                );
+                const answer = await peerConnections[peerId].createAnswer();
+                await peerConnections[peerId].setLocalDescription(answer);
+                ws.send(JSON.stringify({ answer: peerConnections[peerId].localDescription, peerId }));
+            } else if (data.answer) {
+                await peerConnections[peerId].setRemoteDescription(
+                    new RTCSessionDescription(data.answer)
+                );
+            } else if (data.candidate) {
+                await peerConnections[peerId].addIceCandidate(new RTCIceCandidate(data.candidate));
+            }
+        };
+
+        // Yangi foydalanuvchi uchun peer connection yaratish
+        function createPeerConnection(peerId) {
+            peerConnections[peerId] = new RTCPeerConnection({
+                iceServers: [{ urls: 'stun:stun.l.google.com:19302' }],
+            });
+
+            peerConnections[peerId].onicecandidate = (event) => {
+                if (event.candidate) {
+                    ws.send(JSON.stringify({ candidate: event.candidate, peerId }));
+                }
+            };
+
+            peerConnections[peerId].ontrack = (event) => {
+                const videoElement = document.createElement('video');
+                videoElement.srcObject = event.streams[0];
+                videoElement.autoplay = true;
+                videoElement.style.width = '40%';
+                remoteVideos.appendChild(videoElement); // Remote videoni qo'shish
+            };
+
+            // Agar foydalanuvchi o'z oqimiga ega bo'lsa, uni qo'shish
+            if (localStream) {
+                localStream.getTracks().forEach(track => peerConnections[peerId].addTrack(track, localStream));
+            }
+        }
+
+        // Local streamni olish va uzatish
+        navigator.mediaDevices
+            .getUserMedia({ video: true, audio: true })
+            .then((stream) => {
+                localVideo.srcObject = stream;
+                localStream = stream; // Local streamni saqlash
+
+                // Har bir mavjud peer connectionga local oqimni uzatish
+                for (let peerId in peerConnections) {
+                    stream.getTracks().forEach(track => peerConnections[peerId].addTrack(track, stream));
+                }
+            });
+
+            async function startScreenShare() {
+                try {
+                    const screenStream = await navigator.mediaDevices.getDisplayMedia({
+                        video: true,
+                        audio: true // Ekran almashish uchun audio qo'shish
+                    });
+
+                    // O'z oqimimizga ekran oqimini qo'shamiz
+                    localVideo.srcObject = screenStream; // O'z videomizga ekranni qo'shamiz
+
+                    // Har bir mavjud peer connectionga ekran oqimini uzatish
+                    screenStream.getTracks().forEach(track => {
+                        for (let peerId in peerConnections) {
+                            peerConnections[peerId].addTrack(track, screenStream);
+                        }
+                    });
+
+
+                    // Har bir foydalanuvchi uchun taklif yaratish
+                    for (let peerId in peerConnections) {
+                        const offer = await peerConnections[peerId].createOffer();
+                        await peerConnections[peerId].setLocalDescription(offer);
+                        ws.send(JSON.stringify({ offer: peerConnections[peerId].localDescription, peerId }));
+                    }
+                } catch (error) {
+                    console.error('Ekran almashishda xato:', error);
+                }
+            }
+
+    </script>
+</body>
+</html>
