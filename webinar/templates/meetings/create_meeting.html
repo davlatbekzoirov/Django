@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangi Meeting Yaratish</title>
+</head>
+<body>
+    <h1>Yangi Meeting Yaratish</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="room_name">Xona nomi:</label>
+        <input type="text" id="room_name" name="room_name" required>
+        <button type="submit">Yaratish</button>
+    </form>
+</body>
+</html>
