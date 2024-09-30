@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Ro'yxati</title>
+</head>
+<body>
+    <h1>Meetinglar ro'yxati</h1>
+    <ul>
+        {% for meeting in meetings %}
+            <li>
+                <a href="{% url 'meeting_room' room_name=meeting.room_name %}">{{ meeting.room_name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
